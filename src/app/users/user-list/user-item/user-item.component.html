@@ -1,1 +1,12 @@
-<p>user-item works!</p>
+<a [routerLink]="[index]">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{ user.firstName }} {{ user.lastName }}
+    </h4>
+    <p class="list-group-item-text">{{ user.email }}</p>
+    <p class="list-group-item-text">{{ user.serialNumber }}</p>
+  </div>
+  <span class="pull-right">
+    <img [src]="'../../../../assets/img/user-logo.png'"
+      alt="{{ user.serialNumber }}" class="img-responsive">
+  </span>
+</a>

@@ -3,6 +3,6 @@ export abstract class User {
     public firstName: string,
     public lastName: string,
     public email: string,
-    public serial_number: string
+    public serialNumber: string
   ) {}
 }

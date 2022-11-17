@@ -10,6 +10,11 @@ import { UsersComponent } from './users/users.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserItemComponent } from './users/user-list/user-item/user-item.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { MatchingsComponent } from './matchings/matchings.component';
+import { MatchingStartComponent } from './matchings/matching-start/matching-start.component';
+import { MatchingDetailComponent } from './matchings/matching-detail/matching-detail.component';
+import { UserStartComponent } from './users/user-start/user-start.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +24,11 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
     UserListComponent,
     UserItemComponent,
     UserDetailComponent,
+    MatchingsComponent,
+    MatchingStartComponent,
+    MatchingDetailComponent,
+    UserStartComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [],
