@@ -6,6 +6,7 @@ import { MatchingStartComponent } from './matchings/matching-start/matching-star
 import { MatchingsComponent } from './matchings/matchings.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserStartComponent } from './users/user-start/user-start.component';
+import { UsersResolverService } from './users/users-resolver.service';
 import { UsersComponent } from './users/users.component';
 
 const appRoutes: Routes = [
@@ -14,7 +15,10 @@ const appRoutes: Routes = [
     path: 'matchings',
     component: MatchingsComponent,
     children: [
-      { path: '', component: MatchingStartComponent },
+      {
+        path: '',
+        component: MatchingStartComponent,
+      },
       {
         path: ':id',
         component: MatchingDetailComponent,
@@ -28,8 +32,20 @@ const appRoutes: Routes = [
       { path: '', component: UserStartComponent },
       {
         path: ':id',
-        component: UserDetailComponent
-      }
+        component: UserDetailComponent,
+        resolve: [UsersResolverService],
+      },
+    ],
+  },
+  {
+    path: 'professors',
+    component: UsersComponent,
+    children: [
+      { path: '', component: UserStartComponent },
+      {
+        path: ':id',
+        component: UserDetailComponent,
+      },
     ],
   },
 ];

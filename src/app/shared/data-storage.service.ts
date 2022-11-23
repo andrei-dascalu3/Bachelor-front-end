@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, tap } from 'rxjs/operators';
 import { ApiPaths, environment } from 'src/environments/environment';
 
 import { User } from '../users/user.model';
@@ -13,7 +14,19 @@ export class DataStorageService {
 
   constructor(private http: HttpClient, private userService: UserService) {}
 
-  fetchStudents() {
-    return this.http.get<User[]>(`${this.baseUrl}/${ApiPaths.Students}`);
+  fetchUsers() {
+    return this.http
+      .get<{ _embedded: { users: User[] }; _links: {}; page: {} }>(
+        `${this.baseUrl}/${ApiPaths.Users}`
+      )
+      .pipe(
+        map((result) => {
+          const users: User[] = result._embedded.users;
+          return users;
+        }),
+        tap((users) => {
+          this.userService.setUsers(users);
+        })
+      );
   }
 }

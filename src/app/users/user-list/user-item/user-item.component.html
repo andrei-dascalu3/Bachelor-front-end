@@ -1,12 +1,12 @@
-<a [routerLink]="[index]">
+<a style="cursor: pointer;" [routerLink]="[index]" routerLinkActive="active"
+  class="list-group-item clearfix">
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{ user.firstName }} {{ user.lastName }}
     </h4>
     <p class="list-group-item-text">{{ user.email }}</p>
-    <p class="list-group-item-text">{{ user.serialNumber }}</p>
   </div>
   <span class="pull-right">
-    <img [src]="'../../../../assets/img/user-logo.png'"
-      alt="{{ user.serialNumber }}" class="img-responsive">
+    <img [src]="'../../../../assets/img/user-logo.png'" alt="{{ user.email }}"
+      class="img-responsive" style="max-height: 50px;">
   </span>
 </a>

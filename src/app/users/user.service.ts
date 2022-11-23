@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+
 import { User } from './user.model';
 
 @Injectable({
@@ -18,5 +19,10 @@ export class UserService {
 
   getUser(index: number): User {
     return this.users[index];
+  }
+
+  setUsers(users: User[]): void {
+    this.users = users;
+    this.usersChanged.next(this.users.slice());
   }
 }

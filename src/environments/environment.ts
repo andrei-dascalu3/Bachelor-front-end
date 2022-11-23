@@ -4,13 +4,14 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/api/',
+  baseUrl: 'http://localhost:8080/api',
 };
 
 export enum ApiPaths {
-  Matchings = '/matchings',
-  Students = '/students',
-  Professors = '/professors',
+  Users = 'users',
+  Matchings = 'matchings',
+  Students = 'students',
+  Professors = 'professors',
 }
 
 /*
