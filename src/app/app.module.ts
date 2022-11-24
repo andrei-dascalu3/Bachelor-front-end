@@ -15,6 +15,8 @@ import { MatchingStartComponent } from './matchings/matching-start/matching-star
 import { MatchingDetailComponent } from './matchings/matching-detail/matching-detail.component';
 import { UserStartComponent } from './users/user-start/user-start.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { MatchingListComponent } from './matchings/matching-list/matching-list.component';
+import { MatchingItemComponent } from './matchings/matching-list/matching-item/matching-item.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     MatchingDetailComponent,
     UserStartComponent,
     LoadingSpinnerComponent,
+    MatchingListComponent,
+    MatchingItemComponent,
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [],

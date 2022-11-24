@@ -26,10 +26,8 @@ export class UsersResolverService implements Resolve<User[]> {
     const users = this.userService.getUsers();
 
     if (users.length === 0) {
-      console.log('FETCHING');
       return this.dataStorageService.fetchUsers();
     } else {
-      console.log(users);
       return users;
     }
   }

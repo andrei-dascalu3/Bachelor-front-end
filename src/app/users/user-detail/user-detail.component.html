@@ -1,16 +1,26 @@
-<div class="row">
-  <div class="col-xs-12">
-    <img src="../../../assets/img/user-logo.png" alt="{{ user.email }}"
-      class="img-responsive" style="max-height: 300px">
+<div class="card card-cascade sticky-top">
+  <div class="view view-cascade overlay" [align]="'center'">
+    <img class="card-img-top" src="../../../assets/img/user-logo.png"
+      alt="Card image cap" style="max-width: 20vw;">
+    <a>
+      <div class="mask rgba-white-slight"></div>
+    </a>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+  <div class="card-body card-body-cascade text-center">
+    <h4 class="card-title">
+      <strong>{{ user.firstName }} {{ user.lastName }}</strong>
+    </h4>
+    <h6 class="font-weight-bold indigo-text py-2">{{ user.type }}</h6>
+    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Voluptatibus, ex, recusandae.
+      Facere modi sunt, quod quibusdam.
+    </p>
+    <a class="btn btn-info">
+      <i class="fa fa-envelope"></i>
+      <span>{{ user.email }}</span>
+    </a>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <h3>{{ user.email }}</h3>
+  <div class="card-footer text-muted text-center">
+    TBD
   </div>
 </div>

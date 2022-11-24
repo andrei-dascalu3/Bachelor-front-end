@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     path: 'students',
     component: UsersComponent,
     children: [
-      { path: '', component: UserStartComponent },
+      { path: '', component: UserStartComponent, resolve: [UsersResolverService] },
       {
         path: ':id',
         component: UserDetailComponent,
