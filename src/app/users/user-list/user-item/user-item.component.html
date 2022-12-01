@@ -1,5 +1,9 @@
 <a [routerLink]="[index]" routerLinkActive="active"
   class="list-group-item d-flex justify-content-between align-items-center">
+  <div class="d-flex">
+    <h6>{{index}}</h6>
+    <div class="vr" style="margin-left: 1vw;"></div>
+  </div>
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{ user.firstName }} {{ user.lastName }}
     </h4>
