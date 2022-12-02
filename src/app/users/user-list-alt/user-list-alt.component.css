@@ -1,8 +1,10 @@
+.content {
+  display: block;
+}
+
 table {
   width: 100%;
   border-spacing: 0 8px !important;
-  border-radius: 1vw;
-  overflow: hidden !important;
 }
 
 td.mat-cell {

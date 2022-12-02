@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from '../user.model';
@@ -12,17 +14,13 @@ import { UserService } from '../user.service';
   templateUrl: './user-list-alt.component.html',
   styleUrls: ['./user-list-alt.component.css'],
 })
-export class UserListAltComponent implements OnInit {
-  displayedColumns: string[] = [
-    'position',
-    'name',
-    'email',
-    'type',
-    'picture',
-  ];
+export class UserListAltComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = ['position', 'name', 'email', 'type', 'picture'];
 
   users: User[];
   subscription: Subscription;
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private userService: UserService,
@@ -30,6 +28,10 @@ export class UserListAltComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  getPageDetails(event:any) {
+    console.log(event);
+  }
+  
   ngOnInit(): void {
     this.subscription = this.userService.usersChanged.subscribe(
       (users: User[]) => {
@@ -37,6 +39,11 @@ export class UserListAltComponent implements OnInit {
       }
     );
     this.users = this.userService.getUsers();
+    this.dataSource = new MatTableDataSource<User>(this.users);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator
   }
 
   ngOnDestroy() {
