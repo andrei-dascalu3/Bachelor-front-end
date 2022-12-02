@@ -1,3 +1,22 @@
 table {
   width: 100%;
+  border-spacing: 0 8px !important;
+  border-radius: 1vw;
+  overflow: hidden !important;
+}
+
+td.mat-cell {
+  padding: 0.5vw;
+  border: 1px solid rgb(200, 200, 200);
+  text-align: center;
+}
+
+[class*="mat-header-"] {
+  background-color: rgba(50, 135, 202);
+  font-size: medium;
+}
+
+.mat-row:hover {
+  background-color: rgb(220, 220, 220);
+  cursor: pointer;
 }

@@ -20,6 +20,7 @@ import { MatchingItemComponent } from './matchings/matching-list/matching-item/m
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../material-module';
 import { UserListAltComponent } from './users/user-list-alt/user-list-alt.component';
+import { PreferencesComponent } from './preferences/preferences.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { UserListAltComponent } from './users/user-list-alt/user-list-alt.compon
     MatchingListComponent,
     MatchingItemComponent,
     UserListAltComponent,
+    PreferencesComponent,
   ],
   imports: [
     BrowserModule,

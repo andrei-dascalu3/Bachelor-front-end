@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatchingDetailComponent } from './matchings/matching-detail/matching-detail.component';
 import { MatchingStartComponent } from './matchings/matching-start/matching-start.component';
 import { MatchingsComponent } from './matchings/matchings.component';
+import { PreferencesComponent } from './preferences/preferences.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserStartComponent } from './users/user-start/user-start.component';
 import { UsersResolverService } from './users/users-resolver.service';
@@ -48,6 +49,10 @@ const appRoutes: Routes = [
       },
     ],
   },
+  {
+    path: 'preferences',
+    component: PreferencesComponent,
+  }
 ];
 
 @NgModule({
