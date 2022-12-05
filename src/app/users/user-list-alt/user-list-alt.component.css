@@ -16,6 +16,12 @@ td.mat-cell {
 [class*="mat-header-"] {
   background-color: rgba(50, 135, 202);
   font-size: medium;
+  text-align: center;
+}
+
+::ng-deep .mat-sort-header-container {
+  display:flex;
+  justify-content:center;
 }
 
 .mat-row:hover {
