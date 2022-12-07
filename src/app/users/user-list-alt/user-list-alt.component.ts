@@ -16,11 +16,11 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-list-alt.component.css'],
 })
 export class UserListAltComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'email', 'type', 'picture'];
+  displayedColumns: string[] = ['position', 'name', 'email', 'type', 'actions'];
 
   users: User[];
   subscription: Subscription;
-  dataSource: any;
+  dataSource: MatTableDataSource<User>;
   sortedData: User[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) matSort: MatSort;
@@ -55,6 +55,14 @@ export class UserListAltComponent implements OnInit, AfterViewInit {
     });
   }
 
+  filterChanged(event: Event) {
+    const fillValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = fillValue;
+    console.log(this.dataSource);
+    console.log(this.dataSource.filteredData.length);
+    
+  }
+
   ngOnInit(): void {
     this.subscription = this.userService.usersChanged.subscribe(
       (users: User[]) => {
@@ -67,7 +75,7 @@ export class UserListAltComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort=this.matSort;
+    this.dataSource.sort = this.matSort;
   }
 
   ngOnDestroy() {

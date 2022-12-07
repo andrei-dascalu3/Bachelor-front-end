@@ -1,11 +1,13 @@
-<div class="contemt" role="main">
+<div class="content" role="main">
   <div class="mat-elevation-z8">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput placeholder="Filter" (keyup)="filterChanged($event)">
+    </mat-form-field>
     <table mat-table matSort [dataSource]="dataSource">
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element; let indexOfEl = index"> {{
-          indexOfEl
-          + 1 }} </td>
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element;"> {{ element.id }} </td>
       </ng-container>
 
       <ng-container matColumnDef="name">
@@ -24,10 +26,21 @@
         <td mat-cell *matCellDef="let element"> {{ element.type }} </td>
       </ng-container>
 
-      <ng-container matColumnDef="picture">
-        <th mat-header-cell *matHeaderCellDef> Picture </th>
-        <td mat-cell *matCellDef="let element"><img style="max-height: 5vh;"
-            src="../../../assets/img/user-logo.png" alt="{{element.email}}">
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="button-container">
+            <img src="../../../assets/img/user-logo.png" alt="{{element.email}}"
+              title="Details">
+
+            <button mat-mini-fab color="primary" title="Add to favorites">
+              <mat-icon>bookmark</mat-icon>
+            </button>
+
+            <button mat-mini-fab color="warn" title="Add to favorites">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </td>
       </ng-container>
 
@@ -35,9 +48,15 @@
       <tr mat-row
         *matRowDef="let row; columns: displayedColumns; let indexOfEl = index"
         [routerLink]="[indexOfEl]" routerLinkActive="active"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" [attr.colspan]="displayedColumns.length"
+          style="font-size: medium;">
+          No users found.
+        </td>
+      </tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20, 30, 40, 50]" showFirstLastButtons
+    <mat-paginator [pageSizeOptions]="[10, 20, 30, 40, 50]" showFirstLastButtons
       (page)="getPageDetails($event)">
     </mat-paginator>
   </div>

@@ -20,11 +20,31 @@ td.mat-cell {
 }
 
 ::ng-deep .mat-sort-header-container {
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
 }
 
 .mat-row:hover {
   background-color: rgb(220, 220, 220);
+  cursor: default;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.button-container img,
+button {
+  max-height: 5vh;
+  margin: 0.5vw;
+}
+
+.button-container img,
+button:hover {
   cursor: pointer;
+}
+
+mat-form-field {
+  margin-left: 0.5vw;
 }

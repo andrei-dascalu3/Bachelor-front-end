@@ -18,7 +18,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { MatchingListComponent } from './matchings/matching-list/matching-list.component';
 import { MatchingItemComponent } from './matchings/matching-list/matching-item/matching-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '../material-module';
+import { MaterialModule } from './material.module';
 import { UserListAltComponent } from './users/user-list-alt/user-list-alt.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 
