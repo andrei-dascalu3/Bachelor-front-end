@@ -9,3 +9,20 @@ li {
 .dropdown-menu {
   margin-top: 1vh;
 }
+
+.dropdown-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdown-item .login {
+  color: blue;
+}
+
+.dropdown-item .signup {
+  color: green;
+}
+
+.dropdown-item .logout {
+  color: red;
+}
