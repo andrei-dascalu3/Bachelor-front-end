@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
 
 import { MatchingDetailComponent } from './matchings/matching-detail/matching-detail.component';
 import { MatchingStartComponent } from './matchings/matching-start/matching-start.component';
@@ -30,7 +31,11 @@ const appRoutes: Routes = [
     path: 'students',
     component: UsersComponent,
     children: [
-      { path: '', component: UserStartComponent, resolve: [UsersResolverService] },
+      {
+        path: '',
+        component: UserStartComponent,
+        resolve: [UsersResolverService],
+      },
       {
         path: ':id',
         component: UserDetailComponent,
@@ -52,7 +57,11 @@ const appRoutes: Routes = [
   {
     path: 'preferences',
     component: PreferencesComponent,
-  }
+  },
+  {
+    path: 'auth',
+    component: AuthComponent,
+  },
 ];
 
 @NgModule({

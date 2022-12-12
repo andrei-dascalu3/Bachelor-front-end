@@ -16,12 +16,12 @@ export class DataStorageService {
 
   fetchUsers() {
     return this.http
-      .get<{ _embedded: { users: User[] }; _links: {}; page: {} }>(
+      .get<{ _embedded: { persons: User[] }; _links: {}; page: {} }>(
         `${this.baseUrl}/${ApiPaths.Users}`
       )
       .pipe(
         map((result) => {
-          const users: User[] = result._embedded.users;
+          const users: User[] = result._embedded.persons;
           return users;
         }),
         tap((users) => {

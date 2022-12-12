@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { UserListAltComponent } from './users/user-list-alt/user-list-alt.component';
 import { PreferencesComponent } from './preferences/preferences.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { PreferencesComponent } from './preferences/preferences.component';
     MatchingItemComponent,
     UserListAltComponent,
     PreferencesComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
