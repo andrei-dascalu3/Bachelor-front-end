@@ -1,1 +1,65 @@
-<p>user-edit works!</p>
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-3">
+    <form #form="ngForm">
+      <button class="btn btn-primary" (click)="onSwitchType()"
+        type="button">Switch to {{ isProfessor ? "Student" : "Professor" }}
+      </button>
+      <hr>
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" id="name" class="form-control" name="name"
+            placeholder="Prenume" ngModel required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="surname" class="col-sm-2 col-form-label">Surname</label>
+        <div class="col-sm-10">
+          <input type="text" id="surname" class="form-control" name="surname"
+            placeholder="Nume" ngModel required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" id="email" class="form-control" name="email"
+            placeholder="Email" ngModel required email>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-8">
+          <input type="password" id="password" class="form-control"
+            name="password" placeholder="Parola" ngModel required minlength="10">
+        </div>
+        <button class="btn btn-success col-sm-2">Generate</button>
+      </div>
+      <div class="form-group row" *ngIf="!isProfessor">
+        <label for="" class="col-sm-2 col-form-label">Student ID</label>
+        <div class="col-sm-10">
+          <input type="text" id="student-id" class="form-control"
+            name="student-id" placeholder="Nr. matricol" ngModel required>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="isProfessor">
+        <label for="" class="col-sm-2 col-form-label">Rank</label>
+        <div class="col-sm-10">
+          <input type="text" id="rank" class="form-control" name="rank"
+            placeholder="Titlu didactic" ngModel required>
+        </div>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox"
+          id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Grant admin
+          rights</label>
+      </div>
+      <hr>
+      <div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <span>|</span>
+        <button type="submit" class="btn btn-danger">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

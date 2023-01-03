@@ -16,7 +16,7 @@ export class DataStorageService {
 
   fetchUsers() {
     const headerDict = {
-      Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLnNtaXRoQGVtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwiZXhwIjoxNjcyNjc2NjMwfQ.Zy-gdLrLNyes0fvYxjRWkKddGO48l0QyBnXkssnbDM4'
+      Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLnNtaXRoQGVtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwiZXhwIjoxNjcyNzM3ODczfQ.dVqO3mroIR8ekx38atwd2FuDOKFaTppkSOqOBy9roPw'
     }
     const requestOptions = {
       headers: new HttpHeaders(headerDict)
