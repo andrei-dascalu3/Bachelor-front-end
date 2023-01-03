@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click)="onNewProposal()">New
+      Proposal</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-proposal-item *ngFor="let proposalEl of proposals; let i = index"
+      [proposal]="proposalEl" [index]="i"></app-proposal-item>
+  </div>
+</div>

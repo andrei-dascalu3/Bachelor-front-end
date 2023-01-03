@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
 import { ApiPaths, environment } from 'src/environments/environment';
+import { Proposal } from '../proposals/proposal.model';
 
 import { User } from '../users/user.model';
 import { UserService } from '../users/user.service';
@@ -16,7 +17,7 @@ export class DataStorageService {
 
   fetchUsers() {
     const headerDict = {
-      Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLnNtaXRoQGVtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwiZXhwIjoxNjcyNzM3ODczfQ.dVqO3mroIR8ekx38atwd2FuDOKFaTppkSOqOBy9roPw'
+      Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b20uZG91Z2xhc0BlbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJleHAiOjE2NzI3NTEwOTN9.xkTx9JC8Au1PECGZXMIapCNQsvm5jQVpEx6HP75064g'
     }
     const requestOptions = {
       headers: new HttpHeaders(headerDict)
@@ -35,5 +36,9 @@ export class DataStorageService {
           this.userService.setUsers(users);
         })
       );
+  }
+
+  fetchProposals(uid: number) : Proposal[] {
+    return []
   }
 }

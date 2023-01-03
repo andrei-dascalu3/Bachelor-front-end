@@ -1,0 +1,7 @@
+a {
+  cursor: pointer;
+  border: solid black 2px;
+  border-radius: 10px;
+  margin-top: 1vh;
+  padding: 2%;
+}

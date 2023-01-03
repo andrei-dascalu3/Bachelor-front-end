@@ -24,9 +24,11 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { AuthComponent } from './auth/auth.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { ProposalsComponent } from './proposals/proposals.component';
-import { ThemeDetailComponent } from './proposals/theme-detail/theme-detail.component';
-import { TopicDetailComponent } from './proposals/topic-detail/topic-detail.component';
 import { ProposalEditComponent } from './proposals/proposal-edit/proposal-edit.component';
+import { ProposalDetailComponent } from './proposals/proposal-detail/proposal-detail.component';
+import { ProposalListComponent } from './proposals/proposal-list/proposal-list.component';
+import { ProposalsStartComponent } from './proposals/proposals-start/proposals-start.component';
+import { ProposalItemComponent } from './proposals/proposal-list/proposal-item/proposal-item.component';
 
 @NgModule({
   declarations: [
@@ -48,9 +50,11 @@ import { ProposalEditComponent } from './proposals/proposal-edit/proposal-edit.c
     AuthComponent,
     UserEditComponent,
     ProposalsComponent,
-    ThemeDetailComponent,
-    TopicDetailComponent,
+    ProposalListComponent,
     ProposalEditComponent,
+    ProposalDetailComponent,
+    ProposalsStartComponent,
+    ProposalItemComponent
   ],
   imports: [
     BrowserModule,

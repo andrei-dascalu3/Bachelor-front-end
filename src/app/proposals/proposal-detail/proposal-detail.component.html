@@ -1,0 +1,23 @@
+<div class="item">
+  <div class="row">
+    <div class="col-sm-1">
+      <button type="button" class="btn btn-primary"
+        (click)="onEditProposal()">Edit</button>
+    </div>
+    <div class="col-sm-1">
+      <button type="button" class="btn btn-danger"
+        (click)="onDeleteProposal()">Delete</button>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>{{ proposal.title }}</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <p>{{ proposal.description }}</p>
+    </div>
+  </div>
+</div>

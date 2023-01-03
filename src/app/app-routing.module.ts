@@ -6,6 +6,10 @@ import { MatchingDetailComponent } from './matchings/matching-detail/matching-de
 import { MatchingStartComponent } from './matchings/matching-start/matching-start.component';
 import { MatchingsComponent } from './matchings/matchings.component';
 import { PreferencesComponent } from './preferences/preferences.component';
+import { ProposalDetailComponent } from './proposals/proposal-detail/proposal-detail.component';
+import { ProposalEditComponent } from './proposals/proposal-edit/proposal-edit.component';
+import { ProposalResolverService } from './proposals/proposal-resolver.service';
+import { ProposalsStartComponent } from './proposals/proposals-start/proposals-start.component';
 import { ProposalsComponent } from './proposals/proposals.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
@@ -63,6 +67,20 @@ const appRoutes: Routes = [
   {
     path: 'proposals',
     component: ProposalsComponent,
+    children: [
+      { path: '', component: ProposalsStartComponent },
+      { path: 'new', component: ProposalEditComponent },
+      {
+        path: ':id',
+        component: ProposalDetailComponent,
+        resolve: [ProposalResolverService]
+      },
+      {
+        path: ':id/edit',
+        component: ProposalEditComponent,
+        resolve: [ProposalResolverService]
+      }
+    ]
   },
   {
     path: 'add-user',
