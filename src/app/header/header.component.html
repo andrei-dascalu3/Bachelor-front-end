@@ -37,9 +37,16 @@
             Preferences
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/proposals" routerLinkActive="active">
+            Proposals
+          </a>
+        </li>
       </ul>
     </div>
     <div class="d-flex align-items-center">
+      <button class="btn btn-success" style="margin-right: 1vw;"
+        routerLink="/add-user" routerLinkActive="active">Add User</button>
       <div class="dropdown">
         <a class="dropdown-toggle d-flex align-items-center hidden-arrow"
           id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -55,12 +62,10 @@
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="nav-link dropdown-item" routerLink="/auth"
+          <li *ngIf="!isAuthenticated"><a class="dropdown-item" routerLink="/auth"
               routerLinkActive="active">LOG IN<span
                 class='material-icons login'>login</span></a></li>
-          <li><a class="dropdown-item">SIGN UP<span
-                class='material-icons signup'>account_box</span></a></li>
-          <li><a class="dropdown-item">LOG OUT<span
+          <li *ngIf="isAuthenticated"><a class="dropdown-item">LOG OUT<span
                 class='material-icons logout'>logout</span></a></li>
         </ul>
       </div>

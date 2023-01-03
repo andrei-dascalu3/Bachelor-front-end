@@ -16,7 +16,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-list-alt.component.css'],
 })
 export class UserListAltComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'email', 'type', 'actions'];
+  displayedColumns: string[] = ['position', 'name', 'username', 'type', 'actions'];
 
   users: User[];
   subscription: Subscription;
@@ -45,10 +45,8 @@ export class UserListAltComponent implements OnInit, AfterViewInit {
       switch (sort.active) {
         case 'name':
           return compare(a.lastName, b.lastName, isAsc);
-        case 'email':
-          return compare(a.email, b.email, isAsc);
-        case 'type':
-          return compare(a.type, b.type, isAsc);
+        case 'username':
+          return compare(a.username, b.username, isAsc);
         default:
           return 0;
       }

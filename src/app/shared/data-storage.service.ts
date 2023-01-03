@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
 import { ApiPaths, environment } from 'src/environments/environment';
@@ -15,13 +15,20 @@ export class DataStorageService {
   constructor(private http: HttpClient, private userService: UserService) {}
 
   fetchUsers() {
+    const headerDict = {
+      Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLnNtaXRoQGVtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwiZXhwIjoxNjcyNjc2NjMwfQ.Zy-gdLrLNyes0fvYxjRWkKddGO48l0QyBnXkssnbDM4'
+    }
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict)
+    }
     return this.http
-      .get<{ _embedded: { persons: User[] }; _links: {}; page: {} }>(
-        `${this.baseUrl}/${ApiPaths.Users}`
+      .get<User[]>(
+        `${this.baseUrl}/${ApiPaths.Users}`,
+        requestOptions
       )
       .pipe(
         map((result) => {
-          const users: User[] = result._embedded.persons;
+          const users: User[] = result;
           return users;
         }),
         tap((users) => {

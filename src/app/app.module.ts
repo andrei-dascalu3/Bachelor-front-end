@@ -22,6 +22,11 @@ import { MaterialModule } from './material.module';
 import { UserListAltComponent } from './users/user-list-alt/user-list-alt.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { AuthComponent } from './auth/auth.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { ProposalsComponent } from './proposals/proposals.component';
+import { ThemeDetailComponent } from './proposals/theme-detail/theme-detail.component';
+import { TopicDetailComponent } from './proposals/topic-detail/topic-detail.component';
+import { ProposalEditComponent } from './proposals/proposal-edit/proposal-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +46,11 @@ import { AuthComponent } from './auth/auth.component';
     UserListAltComponent,
     PreferencesComponent,
     AuthComponent,
+    UserEditComponent,
+    ProposalsComponent,
+    ThemeDetailComponent,
+    TopicDetailComponent,
+    ProposalEditComponent,
   ],
   imports: [
     BrowserModule,

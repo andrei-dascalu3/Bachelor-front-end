@@ -7,12 +7,12 @@
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{ user.firstName }} {{ user.lastName }}
     </h4>
-    <p class="list-group-item-text">{{ user.email }}</p>
+    <p class="list-group-item-text">{{ user.username }}</p>
   </div>
-  <h6 *ngIf="user.type === 'student'">serial number</h6>
-  <h6 *ngIf="user.type === 'professor'">rank</h6>
+  <h6 *ngIf="!user.professor">serial number</h6>
+  <h6 *ngIf="user.professor">rank</h6>
   <span class="pull-right">
-    <img [src]="'../../../../assets/img/user-logo.png'" alt="{{ user.email }}"
+    <img [src]="'../../../../assets/img/user-logo.png'" alt="{{ user.username }}"
       class="img-responsive" style="max-height: 50px;">
   </span>
 </a>

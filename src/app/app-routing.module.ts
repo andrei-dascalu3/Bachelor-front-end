@@ -6,7 +6,9 @@ import { MatchingDetailComponent } from './matchings/matching-detail/matching-de
 import { MatchingStartComponent } from './matchings/matching-start/matching-start.component';
 import { MatchingsComponent } from './matchings/matchings.component';
 import { PreferencesComponent } from './preferences/preferences.component';
+import { ProposalsComponent } from './proposals/proposals.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserStartComponent } from './users/user-start/user-start.component';
 import { UsersResolverService } from './users/users-resolver.service';
 import { UsersComponent } from './users/users.component';
@@ -57,6 +59,14 @@ const appRoutes: Routes = [
   {
     path: 'preferences',
     component: PreferencesComponent,
+  },
+  {
+    path: 'proposals',
+    component: ProposalsComponent,
+  },
+  {
+    path: 'add-user',
+    component: UserEditComponent
   },
   {
     path: 'auth',

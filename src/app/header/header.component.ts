@@ -8,6 +8,8 @@ import { DataStorageService } from '../shared/data-storage.service';
 })
 export class HeaderComponent implements OnInit {
 
+  isAuthenticated = false;
+
   constructor(private dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
