@@ -2,10 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
 import { ApiPaths, environment } from 'src/environments/environment';
+import { AuthService } from '../auth/auth.service';
 import { Proposal } from '../proposals/proposal.model';
 
 import { User } from '../users/user.model';
 import { UserService } from '../users/user.service';
+import { NewUser } from './newUser.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +15,11 @@ import { UserService } from '../users/user.service';
 export class DataStorageService {
   baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(private http: HttpClient, private userService: UserService, private authService: AuthService) {}
 
   fetchUsers() {
     const headerDict = {
-      Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b20uZG91Z2xhc0BlbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJleHAiOjE2NzI3NTEwOTN9.xkTx9JC8Au1PECGZXMIapCNQsvm5jQVpEx6HP75064g'
+      Authorization: 'Bearer ' + this.authService.currentToken
     }
     const requestOptions = {
       headers: new HttpHeaders(headerDict)
@@ -40,5 +42,19 @@ export class DataStorageService {
 
   fetchProposals(uid: number) : Proposal[] {
     return []
+  }
+
+  addNewUser(newUser: NewUser) {
+    const headerDict = {
+      Authorization: 'Bearer ' + this.authService.currentToken,
+    };
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+      body: newUser,
+    };
+    return this.http.post<NewUser>(
+      `${this.baseUrl}/${ApiPaths.User}/save`,
+      requestOptions
+    );
   }
 }
