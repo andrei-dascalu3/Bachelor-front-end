@@ -15,20 +15,21 @@ import { NewUser } from './newUser.model';
 export class DataStorageService {
   baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient, private userService: UserService, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   fetchUsers() {
     const headerDict = {
-      Authorization: 'Bearer ' + this.authService.currentToken
-    }
+      Authorization: 'Bearer ' + this.authService.currentToken,
+    };
     const requestOptions = {
-      headers: new HttpHeaders(headerDict)
-    }
+      headers: new HttpHeaders(headerDict),
+    };
     return this.http
-      .get<User[]>(
-        `${this.baseUrl}/${ApiPaths.Users}`,
-        requestOptions
-      )
+      .get<User[]>(`${this.baseUrl}/${ApiPaths.Users}`, requestOptions)
       .pipe(
         map((result) => {
           const users: User[] = result;
@@ -40,21 +41,31 @@ export class DataStorageService {
       );
   }
 
-  fetchProposals(uid: number) : Proposal[] {
-    return []
+  fetchProposals(uid: number): Proposal[] {
+    return [];
   }
 
   addNewUser(newUser: NewUser) {
     const headerDict = {
       Authorization: 'Bearer ' + this.authService.currentToken,
     };
-    const requestOptions = {
-      headers: new HttpHeaders(headerDict),
-      body: newUser,
-    };
     return this.http.post<NewUser>(
       `${this.baseUrl}/${ApiPaths.User}/save`,
-      requestOptions
+      newUser,
+      { headers: headerDict }
     );
+  }
+
+  addRoleToUser(username: string, roleName: string) {
+    const headerDict = {
+      Authorization: 'Bearer ' + this.authService.currentToken,
+    };
+    const body = {
+      username: username,
+      roleName: roleName,
+    };
+    return this.http.post(`${this.baseUrl}/${ApiPaths.AddRole}`, body, {
+      headers: headerDict,
+    });
   }
 }

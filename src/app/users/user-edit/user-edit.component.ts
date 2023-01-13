@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { NewUser } from 'src/app/shared/newUser.model';
+import { threadId } from 'worker_threads';
 import { User } from '../user.model';
 
 @Component({
@@ -12,6 +13,7 @@ import { User } from '../user.model';
 })
 export class UserEditComponent implements OnInit {
   isProfessor = false;
+  isAdmin = false;
 
   constructor(private dataStorageService: DataStorageService) {}
 
@@ -34,6 +36,37 @@ export class UserEditComponent implements OnInit {
       this.isProfessor,
       []
     );
-    this.dataStorageService.addNewUser(newUser);
+    const username = form.value.email;
+    console.log(newUser);
+    this.dataStorageService.addNewUser(newUser).subscribe(
+      (resData) => {
+        console.log(resData);
+        this.dataStorageService.addRoleToUser(username, 'ROLE_USER').subscribe(
+          (resData) => {
+            console.log(resData);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+        if (this.isAdmin) {
+          this.dataStorageService
+            .addRoleToUser(username, 'ROLE_ADMIN')
+            .subscribe(
+              (resData) => {
+                console.log(resData);
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    form.reset();
   }
 }
