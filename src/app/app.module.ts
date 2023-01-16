@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -29,6 +29,7 @@ import { ProposalDetailComponent } from './proposals/proposal-detail/proposal-de
 import { ProposalListComponent } from './proposals/proposal-list/proposal-list.component';
 import { ProposalsStartComponent } from './proposals/proposals-start/proposals-start.component';
 import { ProposalItemComponent } from './proposals/proposal-list/proposal-item/proposal-item.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { ProposalItemComponent } from './proposals/proposal-list/proposal-item/p
     ProposalEditComponent,
     ProposalDetailComponent,
     ProposalsStartComponent,
-    ProposalItemComponent
+    ProposalItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +65,13 @@ import { ProposalItemComponent } from './proposals/proposal-list/proposal-item/p
     BrowserAnimationsModule,
     MaterialModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

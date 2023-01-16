@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, take, exhaustMap } from 'rxjs/operators';
 import { ApiPaths, environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { Proposal } from '../proposals/proposal.model';
@@ -23,40 +23,24 @@ export class DataStorageService {
   ) {}
 
   fetchUser(uid: number) {
-    const headerDict = {
-      Authorization: 'Bearer ' + this.authService.currentToken,
-    };
-    const requestOptions = {
-      headers: new HttpHeaders(headerDict),
-    };
-    return this.http
-      .get<User>(`${this.baseUrl}/${ApiPaths.Users}/${uid}`, requestOptions)
-      .pipe(
-        map(result => {
-          const user: User = result;
-          return user;
-        })
-      );
+    return this.http.get<User>(`${this.baseUrl}/${ApiPaths.Users}/${uid}`).pipe(
+      map((result) => {
+        const user: User = result;
+        return user;
+      })
+    );
   }
 
   fetchUsers() {
-    const headerDict = {
-      Authorization: 'Bearer ' + this.authService.currentToken,
-    };
-    const requestOptions = {
-      headers: new HttpHeaders(headerDict),
-    };
-    return this.http
-      .get<User[]>(`${this.baseUrl}/${ApiPaths.Users}`, requestOptions)
-      .pipe(
-        map((result) => {
-          const users: User[] = result;
-          return users;
-        }),
-        tap((users) => {
-          this.userService.setUsers(users);
-        })
-      );
+    return this.http.get<User[]>(`${this.baseUrl}/${ApiPaths.Users}`).pipe(
+      map((result) => {
+        const users: User[] = result;
+        return users;
+      }),
+      tap((users) => {
+        this.userService.setUsers(users);
+      })
+    );
   }
 
   fetchProposals(uid: number): Proposal[] {
@@ -64,13 +48,8 @@ export class DataStorageService {
   }
 
   addNewUser(newUser: NewUser) {
-    const headerDict = {
-      Authorization: 'Bearer ' + this.authService.currentToken,
-    };
     return this.http
-      .post<NewUser>(`${this.baseUrl}/${ApiPaths.User}/save`, newUser, {
-        headers: headerDict,
-      })
+      .post<NewUser>(`${this.baseUrl}/${ApiPaths.User}/save`, newUser)
       .pipe(
         catchError((errorRes) => {
           let errorMessage = 'An unknown error occured!';
@@ -90,15 +69,10 @@ export class DataStorageService {
   }
 
   addRoleToUser(username: string, roleName: string) {
-    const headerDict = {
-      Authorization: 'Bearer ' + this.authService.currentToken,
-    };
     const body = {
       username: username,
       roleName: roleName,
     };
-    return this.http.post(`${this.baseUrl}/${ApiPaths.AddRole}`, body, {
-      headers: headerDict,
-    });
+    return this.http.post(`${this.baseUrl}/${ApiPaths.AddRole}`, body);
   }
 }

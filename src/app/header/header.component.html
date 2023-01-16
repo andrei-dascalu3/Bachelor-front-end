@@ -70,7 +70,8 @@
           <li><a class="dropdown-item" routerLink="/auth"
               routerLinkActive="active" *ngIf="!isAuthenticated">LOG IN<span
                 class='material-icons login'>login</span></a></li>
-          <li><a class="dropdown-item" *ngIf="isAuthenticated">LOG OUT<span
+          <li><a class="dropdown-item" *ngIf="isAuthenticated"
+              (click)="onLogout()">LOG OUT<span
                 class='material-icons logout'>logout</span></a></li>
         </ul>
       </div>

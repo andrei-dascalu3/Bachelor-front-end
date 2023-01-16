@@ -14,17 +14,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAdmin = false;
   private userSub: Subscription;
 
-  constructor(
-    private dataStorageService: DataStorageService,
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.userSub = this.authService.userData.subscribe(userData => {
+    this.userSub = this.authService.userData.subscribe((userData) => {
       this.isAuthenticated = !!userData;
       this.isProfessor = userData.isProfessor;
-      this.isAdmin = "ROLE_ADMIN" in userData.roles;
+      this.isAdmin = userData.roles.includes('ROLE_ADMIN');
     });
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
   ngOnDestroy(): void {

@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
+import { AuthAdminGuard } from './auth/guards/auth-admin.guard';
+import { AuthProfessorGuard } from './auth/guards/auth-professor.guard';
+import { AuthStudentGuard } from './auth/guards/auth-student.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 import { MatchingDetailComponent } from './matchings/matching-detail/matching-detail.component';
 import { MatchingStartComponent } from './matchings/matching-start/matching-start.component';
@@ -36,6 +40,7 @@ const appRoutes: Routes = [
   {
     path: 'students',
     component: UsersComponent,
+    canActivate: [AuthGuard, AuthProfessorGuard],
     children: [
       {
         path: '',
@@ -52,6 +57,7 @@ const appRoutes: Routes = [
   {
     path: 'professors',
     component: UsersComponent,
+    canActivate: [AuthGuard, AuthStudentGuard],
     children: [
       { path: '', component: UserStartComponent },
       {
@@ -63,28 +69,31 @@ const appRoutes: Routes = [
   {
     path: 'preferences',
     component: PreferencesComponent,
+    canActivate: [AuthGuard, AuthStudentGuard],
   },
   {
     path: 'proposals',
     component: ProposalsComponent,
+    canActivate: [AuthGuard, AuthProfessorGuard],
     children: [
       { path: '', component: ProposalsStartComponent },
       { path: 'new', component: ProposalEditComponent },
       {
         path: ':id',
         component: ProposalDetailComponent,
-        resolve: [ProposalResolverService]
+        resolve: [ProposalResolverService],
       },
       {
         path: ':id/edit',
         component: ProposalEditComponent,
-        resolve: [ProposalResolverService]
-      }
-    ]
+        resolve: [ProposalResolverService],
+      },
+    ],
   },
   {
     path: 'add-user',
-    component: UserEditComponent
+    component: UserEditComponent,
+    canActivate: [AuthGuard, AuthAdminGuard],
   },
   {
     path: 'auth',

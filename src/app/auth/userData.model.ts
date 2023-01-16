@@ -16,4 +16,8 @@ export class UserData {
     }
     return this._token;
   }
+
+  get refreshToken() {
+    return this._refreshToken;
+  }
 }
