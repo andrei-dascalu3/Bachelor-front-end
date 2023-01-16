@@ -21,24 +21,26 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/students" routerLinkActive="active">
+          <a class="nav-link" routerLink="/students" routerLinkActive="active"
+            *ngIf="isAuthenticated && isProfessor">
             Students
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/professors"
-            routerLinkActive="active">
+          <a class="nav-link" routerLink="/professors" routerLinkActive="active"
+            *ngIf="isAuthenticated  && !isProfessor">
             Professors
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/preferences"
-            routerLinkActive="active">
+            routerLinkActive="active" *ngIf="isAuthenticated  && !isProfessor">
             Preferences
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/proposals" routerLinkActive="active">
+          <a class="nav-link" routerLink="/proposals" routerLinkActive="active"
+            *ngIf="isAuthenticated  && isProfessor">
             Proposals
           </a>
         </li>
@@ -46,7 +48,8 @@
     </div>
     <div class="d-flex align-items-center">
       <button class="btn btn-success" style="margin-right: 1vw;"
-        routerLink="/add-user" routerLinkActive="active">Add User</button>
+        routerLink="/add-user" routerLinkActive="active"
+        *ngIf="isAuthenticated && isAdmin">Add User</button>
       <div class="dropdown">
         <a class="dropdown-toggle d-flex align-items-center hidden-arrow"
           id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -56,16 +59,18 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-end"
           aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item">Preferences</a></li>
-          <li><a class="dropdown-item">My profile</a></li>
-          <li><a class="dropdown-item">Setings</a></li>
+          <div *ngIf="isAuthenticated">
+            <li><a class="dropdown-item">Preferences</a></li>
+            <li><a class="dropdown-item">My profile</a></li>
+            <li><a class="dropdown-item">Setings</a></li>
+          </div>
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li *ngIf="!isAuthenticated"><a class="dropdown-item" routerLink="/auth"
-              routerLinkActive="active">LOG IN<span
+          <li><a class="dropdown-item" routerLink="/auth"
+              routerLinkActive="active" *ngIf="!isAuthenticated">LOG IN<span
                 class='material-icons login'>login</span></a></li>
-          <li *ngIf="isAuthenticated"><a class="dropdown-item">LOG OUT<span
+          <li><a class="dropdown-item" *ngIf="isAuthenticated">LOG OUT<span
                 class='material-icons logout'>logout</span></a></li>
         </ul>
       </div>

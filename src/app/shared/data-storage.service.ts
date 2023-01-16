@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { ApiPaths, environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { Proposal } from '../proposals/proposal.model';
@@ -20,6 +21,23 @@ export class DataStorageService {
     private userService: UserService,
     private authService: AuthService
   ) {}
+
+  fetchUser(uid: number) {
+    const headerDict = {
+      Authorization: 'Bearer ' + this.authService.currentToken,
+    };
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    return this.http
+      .get<User>(`${this.baseUrl}/${ApiPaths.Users}/${uid}`, requestOptions)
+      .pipe(
+        map(result => {
+          const user: User = result;
+          return user;
+        })
+      );
+  }
 
   fetchUsers() {
     const headerDict = {
@@ -49,11 +67,26 @@ export class DataStorageService {
     const headerDict = {
       Authorization: 'Bearer ' + this.authService.currentToken,
     };
-    return this.http.post<NewUser>(
-      `${this.baseUrl}/${ApiPaths.User}/save`,
-      newUser,
-      { headers: headerDict }
-    );
+    return this.http
+      .post<NewUser>(`${this.baseUrl}/${ApiPaths.User}/save`, newUser, {
+        headers: headerDict,
+      })
+      .pipe(
+        catchError((errorRes) => {
+          let errorMessage = 'An unknown error occured!';
+          if (!errorRes.error || !errorRes.error.errorMessage) {
+            return throwError(() => new Error(errorMessage));
+          }
+          if (
+            errorRes.error.errorMessage.startsWith(
+              `Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL \[n/a\]; constraint \[user.username_UNIQUE\];`
+            )
+          ) {
+            return throwError(() => Error(errorMessage));
+          }
+          return throwError(() => Error(errorMessage));
+        })
+      );
   }
 
   addRoleToUser(username: string, roleName: string) {

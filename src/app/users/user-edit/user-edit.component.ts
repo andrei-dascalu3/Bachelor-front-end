@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -14,6 +15,9 @@ import { User } from '../user.model';
 export class UserEditComponent implements OnInit {
   isProfessor = false;
   isAdmin = false;
+
+  isLoading = false;
+  error: string = '';
 
   constructor(private dataStorageService: DataStorageService) {}
 
@@ -38,35 +42,44 @@ export class UserEditComponent implements OnInit {
     );
     const username = form.value.email;
     console.log(newUser);
-    this.dataStorageService.addNewUser(newUser).subscribe(
-      (resData) => {
-        console.log(resData);
-        this.dataStorageService.addRoleToUser(username, 'ROLE_USER').subscribe(
-          (resData) => {
+    this.isLoading = true;
+    this.dataStorageService.addNewUser(newUser).subscribe((resData) => {
+      this.isLoading = false;
+      console.log(resData);
+      this.dataStorageService
+        .addRoleToUser(username, 'ROLE_USER')
+        .subscribe((resData) => {
+          console.log(resData);
+          this.isLoading = false;
+        }, errorMessage => {
+          console.log(errorMessage);
+          this.error = errorMessage;
+          this.isLoading = false;
+        });
+      if (this.isAdmin) {
+        this.dataStorageService
+          .addRoleToUser(username, 'ROLE_ADMIN')
+          .subscribe((resData) => {
             console.log(resData);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-        if (this.isAdmin) {
-          this.dataStorageService
-            .addRoleToUser(username, 'ROLE_ADMIN')
-            .subscribe(
-              (resData) => {
-                console.log(resData);
-              },
-              (error) => {
-                console.log(error);
-              }
-            );
-        }
-      },
-      (error) => {
-        console.log(error);
+            this.isLoading = false;
+          }, errorMessage => {
+            console.log(errorMessage);
+            this.error = errorMessage;
+            this.isLoading = false;
+          });
       }
-    );
-
+    }, errorMessage => {
+      console.log(errorMessage);
+      this.error = errorMessage;
+      this.isLoading = false;
+    });
     form.reset();
+  }
+
+  private errorHandler(errorMessage: string) {
+    console.log('AICI');
+    this.isLoading = false;
+    console.log(errorMessage);
+    this.error = errorMessage;
   }
 }

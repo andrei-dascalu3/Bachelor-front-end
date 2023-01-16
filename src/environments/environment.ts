@@ -13,7 +13,8 @@ export enum ApiPaths {
   Matchings = 'matchings',
   Students = 'students',
   Professors = 'professors',
-  AddRole = 'role/addToUser'
+  AddRole = 'role/addToUser',
+  Login = 'login'
 }
 
 /*
