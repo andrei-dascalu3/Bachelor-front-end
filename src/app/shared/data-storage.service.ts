@@ -16,11 +16,7 @@ import { NewUser } from './newUser.model';
 export class DataStorageService {
   baseUrl = environment.baseUrl;
 
-  constructor(
-    private http: HttpClient,
-    private userService: UserService,
-    private authService: AuthService
-  ) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   fetchUser(uid: number) {
     return this.http.get<User>(`${this.baseUrl}/${ApiPaths.Users}/${uid}`).pipe(
@@ -39,6 +35,30 @@ export class DataStorageService {
       }),
       tap((users) => {
         this.userService.setUsers(users);
+      })
+    );
+  }
+
+  fetchProfessors() {
+    return this.http.get<User[]>(`${this.baseUrl}/${ApiPaths.Professors}`).pipe(
+      map((result) => {
+        const professors: User[] = result;
+        return professors;
+      }),
+      tap((professors) => {
+        this.userService.setUsers(professors);
+      })
+    );
+  }
+
+  fetchStudents() {
+    return this.http.get<User[]>(`${this.baseUrl}/${ApiPaths.Students}`).pipe(
+      map((result) => {
+        const students: User[] = result;
+        return students;
+      }),
+      tap((students) => {
+        this.userService.setUsers(students);
       })
     );
   }

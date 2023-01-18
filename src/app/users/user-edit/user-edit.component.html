@@ -7,6 +7,7 @@
       <app-loading-spinner></app-loading-spinner>
     </div>
     <form #addingForm="ngForm" *ngIf="!isLoading">
+      <h3>{{ isProfessor ? "Professor" : "Student" }}</h3>
       <button class="btn btn-primary" (click)="onSwitchType()"
         type="button">Switch to {{ isProfessor ? "Student" : "Professor" }}
       </button>
@@ -41,23 +42,9 @@
         </div>
         <button class="btn btn-success col-sm-2" disabled>Generate</button>
       </div>
-      <div class="form-group row" *ngIf="!isProfessor">
-        <label for="" class="col-sm-2 col-form-label">Student ID</label>
-        <div class="col-sm-10">
-          <input type="text" id="student-id" class="form-control"
-            name="student-id" placeholder="Nr. matricol" ngModel required>
-        </div>
-      </div>
-      <div class="form-group row" *ngIf="isProfessor">
-        <label for="" class="col-sm-2 col-form-label">Rank</label>
-        <div class="col-sm-10">
-          <input type="text" id="rank" class="form-control" name="rank"
-            placeholder="Titlu didactic" ngModel required>
-        </div>
-      </div>
       <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox"
-          id="flexSwitchCheckDefault" (click)="isAdmin = !isAdmin">
+          id="flexSwitchCheckDefault" (change)="isAdmin = !isAdmin">
         <label class="form-check-label" for="flexSwitchCheckDefault">Grant admin
           rights</label>
       </div>

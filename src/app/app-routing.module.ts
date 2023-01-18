@@ -15,10 +15,11 @@ import { ProposalEditComponent } from './proposals/proposal-edit/proposal-edit.c
 import { ProposalResolverService } from './proposals/proposal-resolver.service';
 import { ProposalsStartComponent } from './proposals/proposals-start/proposals-start.component';
 import { ProposalsComponent } from './proposals/proposals.component';
+import { ProfessorsResolverService } from './users/resolvers/professors-resolver.service';
+import { StudentsResolverService } from './users/resolvers/students-resolver.service';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserStartComponent } from './users/user-start/user-start.component';
-import { UsersResolverService } from './users/users-resolver.service';
 import { UsersComponent } from './users/users.component';
 
 const appRoutes: Routes = [
@@ -45,12 +46,12 @@ const appRoutes: Routes = [
       {
         path: '',
         component: UserStartComponent,
-        resolve: [UsersResolverService],
+        resolve: [StudentsResolverService],
       },
       {
         path: ':id',
         component: UserDetailComponent,
-        resolve: [UsersResolverService],
+        resolve: [StudentsResolverService],
       },
     ],
   },
@@ -59,10 +60,15 @@ const appRoutes: Routes = [
     component: UsersComponent,
     canActivate: [AuthGuard, AuthStudentGuard],
     children: [
-      { path: '', component: UserStartComponent },
+      {
+        path: '',
+        component: UserStartComponent,
+        resolve: [ProfessorsResolverService],
+      },
       {
         path: ':id',
         component: UserDetailComponent,
+        resolve: [ProfessorsResolverService]
       },
     ],
   },

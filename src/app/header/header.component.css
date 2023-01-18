@@ -26,3 +26,18 @@ li {
 .dropdown-item .logout {
   color: red;
 }
+
+a#navbarDropdown {
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
+  text-decoration: none;
+  color: rgba(50, 135, 202);
+}
+
+a#navbarDropdown:hover {
+  background-color: rgba(50, 135, 202);
+  border-radius: 10px;
+  padding: 5px;
+  color: rgb(33,37,41);
+}

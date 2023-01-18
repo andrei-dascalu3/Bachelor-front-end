@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   isProfessor = false;
   isAdmin = false;
+  username: string;
   private userSub: Subscription;
 
   constructor(private authService: AuthService) {}
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.isAuthenticated = !!userData;
       this.isProfessor = userData.isProfessor;
       this.isAdmin = userData.roles.includes('ROLE_ADMIN');
+      this.username = userData.username;
     });
   }
 

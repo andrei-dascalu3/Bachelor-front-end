@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { catchError, BehaviorSubject, tap, throwError } from 'rxjs';
 import { ApiPaths, environment } from 'src/environments/environment';
 import { User } from '../users/user.model';
+import { UserService } from '../users/user.service';
 import { UserData } from './userData.model';
 
 export interface AuthResponseData {
@@ -29,7 +30,11 @@ export class AuthService {
   accesToken: string = null;
   private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
   login(email: string, password: string) {
     const options = {
@@ -97,6 +102,7 @@ export class AuthService {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
+    this.userService.clearUsers();
   }
 
   autoLogout(expirationDuration: number) {

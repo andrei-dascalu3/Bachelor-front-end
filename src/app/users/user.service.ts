@@ -25,4 +25,8 @@ export class UserService {
     this.users = users;
     this.usersChanged.next(this.users.slice());
   }
+
+  clearUsers(): void {
+    this.users = [];
+  }
 }
