@@ -8,21 +8,7 @@ import { Proposal } from './proposal.model';
 export class ProposalService {
   proposalsChanged = new Subject<Proposal[]>();
 
-  private proposals: Proposal[] = [
-    new Proposal(
-      'Minesweeper in Python',
-      'Implement a Minesweeper game in Python. It can be a multiplayer version.',
-      ['link1', 'link2'],
-      true
-    ),
-    new Proposal(
-      'Image recognition',
-      'Propose an image recognition application using ML algorithm.',
-      ['link3', 'link4'],
-      false,
-      2
-    ),
-  ];
+  private proposals: Proposal[] = [];
 
   constructor() {}
 

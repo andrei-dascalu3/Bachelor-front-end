@@ -1,12 +1,16 @@
-<a
-  [routerLink]="[index]"
-  routerLinkActive="active"
+<a [routerLink]="[index]" routerLinkActive="active"
   class="list-group-item clearfix">
+  <div class="row prop-type" [ngClass]="{
+    'topic': proposal.places,
+    'project': !proposal.places
+  }">
+    <span>{{ proposal.places ? "Topic" : "Project"}}</span>
+  </div>
   <div class="row">
     <h4 class="list-group-item-heading">{{ proposal.title }}</h4>
     <p class="list-group-item-text">{{ proposal.description }}</p>
   </div>
-  <div class="row" *ngIf="!proposal.isProject">
+  <div class="row" *ngIf="proposal.places">
     <div class="col-sm-3">
       <span>Available:</span>
     </div>

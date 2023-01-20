@@ -1,11 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from 'src/app/auth/auth.service';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
-import { NewUser } from 'src/app/shared/newUser.model';
-import { threadId } from 'worker_threads';
-import { User } from '../user.model';
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
+import { NewUser } from 'src/app/shared/models/newUser.model';
 
 @Component({
   selector: 'app-user-edit',

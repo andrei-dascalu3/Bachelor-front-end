@@ -1,1 +1,59 @@
-<p>proposal-edit works!</p>
+<div class="row">
+  <div class="col-xs-12">
+    <form #proposalForm="ngForm" (ngSubmit)="onSubmit(proposalForm)">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success"
+            [disabled]="!proposalForm.valid">{{ isEditMode ? "Update" : "Save"
+            }}</button>
+          <button type="button" class="btn btn-danger"
+            (click)="onCancel()">Cancel</button>
+          <span>|</span>
+          <button type="button" class="btn btn-primary" (click)="onSwitch()">Switch to {{
+            isTopic ?
+            "topic"
+            : "project" }}</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" ngModel required
+              class="form-control" [(ngModel)]="proposal.title">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" id="description" class="form-control"
+              name="description" rows="6" [(ngModel)]="proposal.description"
+              required></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="resources">Resources</label>
+            <textarea type="text" id="resources" class=" form-control"
+              name="resources" rows="3"
+              [(ngModel)]="proposal.resources"></textarea>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isTopic" class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="Places">Places</label>
+            <input type="number" min="0" max="5" digitOnly id="places"
+              class=" form-control" name="places" [(ngModel)]="proposal.places"
+              pattern="\d*" required>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

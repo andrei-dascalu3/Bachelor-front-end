@@ -1,21 +1,21 @@
 export class Proposal {
+  id: number;
   title: string;
   description: string;
-  resources: string[];
+  resources?: string;
   places?: number;
-  isProject: boolean;
 
   constructor(
+    id: number,
     title: string,
     desc: string,
-    resources: string[],
-    isProject: boolean,
+    resources?: string,
     places?: number
   ) {
+    this.id = id;
     this.title = title;
     this.description = desc;
     this.resources = resources;
-    this.isProject = isProject;
-    this.places = places
+    this.places = places;
   }
 }

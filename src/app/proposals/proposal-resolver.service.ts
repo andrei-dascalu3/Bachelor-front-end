@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { DataStorageService } from '../shared/data-storage.service';
+import { DataStorageService } from '../shared/services/data-storage.service';
 import { Proposal } from './proposal.model';
 import { ProposalService } from './proposal.service';
 
@@ -26,9 +26,10 @@ export class ProposalResolverService implements Resolve<Proposal[]> {
   ): Proposal[] | Observable<Proposal[]> | Promise<Proposal[]> {
     const proposals = this.proposalService.getProposals();
 
-    if(proposals.length === 0) {
-      const uid = this.authService.currentUser.id;
-      return this.dateStorageService.fetchProposals(uid);
+    if (proposals.length === 0) {
+      return this.dateStorageService.fetchUserProposals(
+        +localStorage.getItem('uid')
+      );
     } else {
       return proposals;
     }

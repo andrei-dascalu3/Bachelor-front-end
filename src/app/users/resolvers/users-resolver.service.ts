@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { DataStorageService } from '../../shared/data-storage.service';
+import { DataStorageService } from '../../shared/services/data-storage.service';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 

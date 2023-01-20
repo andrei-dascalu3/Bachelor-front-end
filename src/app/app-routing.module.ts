@@ -68,7 +68,7 @@ const appRoutes: Routes = [
       {
         path: ':id',
         component: UserDetailComponent,
-        resolve: [ProfessorsResolverService]
+        resolve: [ProfessorsResolverService],
       },
     ],
   },
@@ -82,7 +82,11 @@ const appRoutes: Routes = [
     component: ProposalsComponent,
     canActivate: [AuthGuard, AuthProfessorGuard],
     children: [
-      { path: '', component: ProposalsStartComponent },
+      {
+        path: '',
+        component: ProposalsStartComponent,
+        resolve: [ProposalResolverService],
+      },
       { path: 'new', component: ProposalEditComponent },
       {
         path: ':id',
