@@ -12,7 +12,7 @@ import { MatchingsComponent } from './matchings/matchings.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ProposalDetailComponent } from './proposals/proposal-detail/proposal-detail.component';
 import { ProposalEditComponent } from './proposals/proposal-edit/proposal-edit.component';
-import { ProposalResolverService } from './proposals/proposal-resolver.service';
+import { ProposalResolverService } from './proposals/resolvers/proposal-resolver.service';
 import { ProposalsStartComponent } from './proposals/proposals-start/proposals-start.component';
 import { ProposalsComponent } from './proposals/proposals.component';
 import { ProfessorsResolverService } from './users/resolvers/professors-resolver.service';
@@ -89,12 +89,12 @@ const appRoutes: Routes = [
       },
       { path: 'new', component: ProposalEditComponent },
       {
-        path: ':id',
+        path: ':index',
         component: ProposalDetailComponent,
         resolve: [ProposalResolverService],
       },
       {
-        path: ':id/edit',
+        path: ':index/edit',
         component: ProposalEditComponent,
         resolve: [ProposalResolverService],
       },

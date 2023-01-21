@@ -3,13 +3,11 @@ import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, map, tap, take, exhaustMap } from 'rxjs/operators';
 import { ApiPaths, environment } from 'src/environments/environment';
-import { Proposal } from '../../proposals/proposal.model';
-import { ProposalService } from '../../proposals/proposal.service';
+import { ProposalService } from '../../proposals/services/proposal.service';
 
-import { User } from '../../users/user.model';
-import { UserService } from '../../users/user.service';
-import { NewProposal } from '../models/newProposal.model';
-import { NewUser } from '../models/newUser.model';
+import { User } from '../../users/models/user.model';
+import { UserService } from '../../users/services/user.service';
+import { NewUser } from '../../users/models/newUser.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +18,6 @@ export class DataStorageService {
   constructor(
     private http: HttpClient,
     private userService: UserService,
-    private proposalService: ProposalService
   ) {}
 
   fetchUser(uid: number) {
@@ -88,69 +85,5 @@ export class DataStorageService {
       roleName: roleName,
     };
     return this.http.post(`${this.baseUrl}/${ApiPaths.AddRole}`, body);
-  }
-
-  fetchAllProposals() {
-    return this.http
-      .get<Proposal[]>(`${this.baseUrl}/${ApiPaths.Proposals}`)
-      .pipe(
-        map((result) => {
-          const proposals: Proposal[] = result;
-          return proposals;
-        }),
-        tap((proposals) => {
-          this.proposalService.setProposals(proposals);
-        })
-      );
-  }
-
-  fetchUserProposals(uid: number) {
-    return this.http
-      .get<Proposal[]>(
-        `${this.baseUrl}/${ApiPaths.Users}/${uid}/${ApiPaths.Proposals}`
-      )
-      .pipe(
-        map((result) => {
-          const proposals: Proposal[] = result;
-          return proposals;
-        }),
-        tap((proposals) => {
-          this.proposalService.setProposals(proposals);
-        })
-      );
-  }
-
-  addNewProposal(uid: number, newProposal: NewProposal) {
-    return this.http
-      .post<NewUser>(
-        `${this.baseUrl}/${ApiPaths.Users}/${uid}/${ApiPaths.Proposals}/save`,
-        newProposal
-      )
-      .pipe(
-        catchError((errorRes) => {
-          let errorMessage = 'An unknown error occured at adding proposal!';
-          if (!errorRes.error || !errorRes.error.errorMessage) {
-            return throwError(() => new Error(errorMessage));
-          }
-          return throwError(() => Error(errorMessage));
-        })
-      );
-  }
-
-  updateProposal(uid: number, propId: number, updatedProposal: NewProposal) {
-    return this.http
-      .put<NewUser>(
-        `${this.baseUrl}/${ApiPaths.Users}/${uid}/${ApiPaths.Proposals}/${propId}/update`,
-        updatedProposal
-      )
-      .pipe(
-        catchError((errorRes) => {
-          let errorMessage = 'An unknown error occured at updating proposal!';
-          if (!errorRes.error || !errorRes.error.errorMessage) {
-            return throwError(() => new Error(errorMessage));
-          }
-          return throwError(() => Error(errorMessage));
-        })
-      );
   }
 }

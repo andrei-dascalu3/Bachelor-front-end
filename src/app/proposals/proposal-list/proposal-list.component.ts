@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Proposal } from '../proposal.model';
-import { ProposalService } from '../proposal.service';
+import { Proposal } from '../models/proposal.model';
+import { ProposalService } from '../services/proposal.service';
 
 @Component({
   selector: 'app-proposal-list',
   templateUrl: './proposal-list.component.html',
   styleUrls: ['./proposal-list.component.css'],
 })
-export class ProposalListComponent implements OnInit {
+export class ProposalListComponent implements OnInit, OnDestroy {
   proposals: Proposal[];
   subscription: Subscription;
 
@@ -32,7 +32,7 @@ export class ProposalListComponent implements OnInit {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 }

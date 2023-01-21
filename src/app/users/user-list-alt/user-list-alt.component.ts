@@ -4,8 +4,8 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { User } from '../user.model';
-import { UserService } from '../user.service';
+import { User } from '../models/user.model';
+import { UserService } from '../services/user.service';
 
 /**
  * @title Basic use of `<table mat-table>`

@@ -7,8 +7,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, BehaviorSubject, tap, throwError } from 'rxjs';
 import { ApiPaths, environment } from 'src/environments/environment';
-import { User } from '../users/user.model';
-import { UserService } from '../users/user.service';
+import { User } from '../users/models/user.model';
+import { UserService } from '../users/services/user.service';
 import { UserData } from './userData.model';
 
 export interface AuthResponseData {
@@ -26,7 +26,6 @@ export interface AuthResponseData {
 export class AuthService {
   baseUrl = environment.baseUrl;
   userData = new BehaviorSubject<UserData>(null);
-  currentUser: User;
   accesToken: string = null;
   private tokenExpirationTimer: any;
 

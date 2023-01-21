@@ -9,6 +9,6 @@
   <div class="col-xs-12">
     <app-proposal-item *ngFor="let proposalEl of proposals; let i = index"
       [proposal]="proposalEl" [index]="i"></app-proposal-item>
-    <h1 *ngIf="proposals.length == 0">No proposals.</h1>
+    <h1 class="no-prop" *ngIf="!proposals">No proposals.</h1>
   </div>
 </div>

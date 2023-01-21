@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataStorageService } from 'src/app/shared/services/data-storage.service';
-import { NewUser } from 'src/app/shared/models/newUser.model';
+import { NewUser } from 'src/app/users/models/newUser.model';
 
 @Component({
   selector: 'app-user-edit',

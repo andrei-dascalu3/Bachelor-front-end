@@ -13,7 +13,10 @@ export enum ApiPaths {
   Matchings = 'matchings',
   Students = 'students',
   Professors = 'professors',
+  Proposal = 'proposal',
   Proposals = 'proposals',
+  Preference = 'preference',
+  Preferences = 'preferences',
   AddRole = 'role/addToUser',
   Login = 'login'
 }

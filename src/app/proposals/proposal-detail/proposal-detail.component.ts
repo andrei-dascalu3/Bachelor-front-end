@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Proposal } from '../proposal.model';
-import { ProposalService } from '../proposal.service';
+import { Proposal } from '../models/proposal.model';
+import { ProposalService } from '../services/proposal.service';
 
 @Component({
   selector: 'app-proposal-detail',
@@ -10,7 +10,7 @@ import { ProposalService } from '../proposal.service';
 })
 export class ProposalDetailComponent implements OnInit {
   proposal: Proposal;
-  id: number;
+  index: number;
 
   constructor(
     private proposalService: ProposalService,
@@ -20,8 +20,9 @@ export class ProposalDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
-      this.proposal = this.proposalService.getProposal(this.id);
+      this.index = +params['index'];
+      this.proposal = this.proposalService.getProposal(this.index);
+      console.log(this.index);
     });
   }
 
@@ -30,7 +31,7 @@ export class ProposalDetailComponent implements OnInit {
   }
 
   onDeleteProposal() {
-    this.proposalService.deleteProposal(this.id);
-    this.router.navigate(['/proposals']);
+    this.proposalService.deleteUserProposal(this.index);
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

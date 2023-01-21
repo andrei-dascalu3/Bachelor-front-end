@@ -1,14 +1,14 @@
 export class Proposal {
-  id: number;
   title: string;
   description: string;
+  id?: number;
   resources?: string;
   places?: number;
 
   constructor(
-    id: number,
     title: string,
     desc: string,
+    id?: number,
     resources?: string,
     places?: number
   ) {

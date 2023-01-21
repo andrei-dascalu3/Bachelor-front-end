@@ -7,8 +7,8 @@ import {
 import { Observable } from 'rxjs';
 
 import { DataStorageService } from '../../shared/services/data-storage.service';
-import { User } from '../user.model';
-import { UserService } from '../user.service';
+import { User } from '../models/user.model';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root',
