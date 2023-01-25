@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
 export type HandleError = <T>(
@@ -11,7 +12,7 @@ export type HandleError = <T>(
   providedIn: 'root',
 })
 export class HttpErrorHandler {
-  constructor() {}
+  constructor(private router: Router) {}
 
   createHandleError =
     (serviceName = '') =>
@@ -20,7 +21,7 @@ export class HttpErrorHandler {
 
   handleError<T>(serviceName = '', operation = 'operation', result = {} as T) {
     return (error: HttpErrorResponse): Observable<T> => {
-      console.error(error);
+    console.error(error);
 
       const message =
         error.error instanceof ErrorEvent

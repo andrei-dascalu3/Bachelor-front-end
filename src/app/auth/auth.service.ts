@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, BehaviorSubject, tap, throwError } from 'rxjs';
 import { ApiPaths, environment } from 'src/environments/environment';
-import { User } from '../users/models/user.model';
+import { ProposalService } from '../proposals/services/proposal.service';
 import { UserService } from '../users/services/user.service';
 import { UserData } from './userData.model';
 
@@ -32,7 +32,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private proposalService: ProposalService
   ) {}
 
   login(email: string, password: string) {
@@ -101,7 +102,9 @@ export class AuthService {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
-    this.userService.clearUsers();
+    this.userService.setUsers([]);
+    this.proposalService.setProposals([]);
+    window.location.reload();
   }
 
   autoLogout(expirationDuration: number) {

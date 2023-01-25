@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { map, Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
+import { PreferenceService } from 'src/app/preferences/services/preference.service';
 import { Proposal } from '../models/proposal.model';
 import { ProposalService } from '../services/proposal.service';
 
@@ -8,21 +11,39 @@ import { ProposalService } from '../services/proposal.service';
   templateUrl: './proposal-detail.component.html',
   styleUrls: ['./proposal-detail.component.css'],
 })
-export class ProposalDetailComponent implements OnInit {
+export class ProposalDetailComponent implements OnInit, OnDestroy {
   proposal: Proposal;
   index: number;
+  paramsSub: Subscription;
+  prefSub: Subscription;
+  isProfessor = false;
+  uid: number;
+  isAdded = false;
 
   constructor(
     private proposalService: ProposalService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private prefService: PreferenceService
   ) {}
 
+  @HostListener('window:beforeunload') goToPage() {
+    this.router.navigate(['/matchings']);
+  }
+
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    this.uid = userData ? +userData.uid : null;
+    this.paramsSub = this.route.params.pipe().subscribe((params: Params) => {
       this.index = +params['index'];
       this.proposal = this.proposalService.getProposal(this.index);
-      console.log(this.index);
+      if (this.isProfessor) {
+        this.prefSub = this.prefService
+          .studentHasProposal(this.uid, this.proposal.id)
+          .subscribe((result) => {
+            this.isAdded = result;
+          });
+      }
     });
   }
 
@@ -33,5 +54,15 @@ export class ProposalDetailComponent implements OnInit {
   onDeleteProposal() {
     this.proposalService.deleteUserProposal(this.index);
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  onAddToPreferences() {
+    this.prefService.addUserPreference(this.proposal.id);
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  ngOnDestroy(): void {
+    this.paramsSub.unsubscribe();
+    this.prefSub.unsubscribe();
   }
 }

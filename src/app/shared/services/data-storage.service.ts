@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, map, tap, take, exhaustMap } from 'rxjs/operators';
 import { ApiPaths, environment } from 'src/environments/environment';
-import { ProposalService } from '../../proposals/services/proposal.service';
 
 import { User } from '../../users/models/user.model';
 import { UserService } from '../../users/services/user.service';

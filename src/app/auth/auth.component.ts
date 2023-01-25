@@ -27,7 +27,6 @@ export class AuthComponent implements OnInit {
     authObs = this.authService.login(email, password);
     authObs.subscribe(
       (resData) => {
-        console.log(resData);
         this.isLoading = false;
         this.router.navigate(["/matchings"]);
       },

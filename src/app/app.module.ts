@@ -30,6 +30,10 @@ import { ProposalListComponent } from './proposals/proposal-list/proposal-list.c
 import { ProposalsStartComponent } from './proposals/proposals-start/proposals-start.component';
 import { ProposalItemComponent } from './proposals/proposal-list/proposal-item/proposal-item.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { PreferenceListComponent } from './preferences/preference-list/preference-list.component';
+import { PreferenceItemComponent } from './preferences/preference-list/preference-item/preference-item.component';
+import { PreferenceDetailComponent } from './preferences/preference-detail/preference-detail.component';
+import { PreferenceStartComponent } from './preferences/preference-start/preference-start.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +60,10 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     ProposalDetailComponent,
     ProposalsStartComponent,
     ProposalItemComponent,
+    PreferenceListComponent,
+    PreferenceItemComponent,
+    PreferenceDetailComponent,
+    PreferenceStartComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,12 +17,12 @@ export class ProposalService {
   proposalsChanged = new Subject<Proposal[]>();
   private proposals: Proposal[] = [];
   private handleError: HandleError;
-  private uid;
+  private uid: number;
 
   constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
     const userData = JSON.parse(localStorage.getItem('userData'));
-    this.uid = userData.uid;
-    this.handleError = httpErrorHandler.createHandleError('ProposalsService');
+    this.uid = userData ? userData.uid : null;
+    this.handleError = httpErrorHandler.createHandleError('ProposalService');
   }
 
   getProposals() {
@@ -53,6 +53,19 @@ export class ProposalService {
     return this.http
       .get<Proposal[]>(
         `${this.baseUrl}/${ApiPaths.Users}/${this.uid}/${ApiPaths.Proposals}`
+      )
+      .pipe(
+        catchError(this.handleError('fetchUserProposals', [])),
+        tap((proposals) => {
+          this.setProposals(proposals);
+        })
+      );
+  }
+
+  fetchUserProposalsForStudent(profId: number) {
+    return this.http
+      .get<Proposal[]>(
+        `${this.baseUrl}/${ApiPaths.Users}/${profId}/${ApiPaths.Proposals}`
       )
       .pipe(
         catchError(this.handleError('fetchUserProposals', [])),

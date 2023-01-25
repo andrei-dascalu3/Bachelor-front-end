@@ -1,10 +1,3 @@
-enum Rank {
-  Asistent,
-  Lector,
-  Conferentiar,
-  Profesor,
-}
-
 class Role {
   constructor(public id: number, public name: string) {}
 }
@@ -17,12 +10,9 @@ class User {
     public username: string,
     public password: string,
     public roles: Role[],
-    public professor: boolean
+    public professor: boolean,
+    public description?: string
   ) {}
 }
 
-type Student = User & { serialNumber: string };
-
-type Professor = User & { rank: string };
-
-export { Rank, User, Student, Professor };
+export { User, Role };

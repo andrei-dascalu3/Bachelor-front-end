@@ -7,21 +7,19 @@
     </a>
   </div>
   <div class="card-body card-body-cascade text-center">
-    <h4 class="user-index">{{ id + 1 }}</h4>
+    <h4 class="user-index">#{{ user.id }}</h4>
     <h4 class="card-title">
       <strong>{{ user.firstName }} {{ user.lastName }}</strong>
     </h4>
-    <h6 class="font-weight-bold indigo-text py-2">{{ user.professor? "Professor" : "Student" }}</h6>
-    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing
-      elit. Voluptatibus, ex, recusandae.
-      Facere modi sunt, quod quibusdam.
+    <p class="card-text">
+      {{user.description ? user.description : "No description."}}
     </p>
-    <a class="btn btn-info">
-      <i class="fa fa-envelope"></i>
-      <span>{{ user.username }}</span>
-    </a>
+    <button *ngIf="!isProfessor" type="button" class="btn btn-info"
+      routerLink="proposals" routerLinkActive>View proposals</button>
+    <button *ngIf="isProfessor" type="button"
+      class="btn btn-success">Accept</button>
   </div>
   <div class="card-footer text-muted text-center">
-    TBD
+    {{ user.username }}
   </div>
 </div>

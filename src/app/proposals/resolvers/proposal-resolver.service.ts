@@ -5,8 +5,6 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../../auth/auth.service';
-import { DataStorageService } from '../../shared/services/data-storage.service';
 import { Proposal } from '../models/proposal.model';
 import { ProposalService } from '../services/proposal.service';
 
@@ -20,11 +18,6 @@ export class ProposalResolverService implements Resolve<Proposal[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Proposal[] | Observable<Proposal[]> | Promise<Proposal[]> {
-    const proposals = this.proposalService.getProposals();
-    if(proposals.length === 0) {
-      return this.proposalService.fetchUserProposals();
-    } else {
-      return proposals;
-    }
+    return this.proposalService.fetchUserProposals();
   }
 }

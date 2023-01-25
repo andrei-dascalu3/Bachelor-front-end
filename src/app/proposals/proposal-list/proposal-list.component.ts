@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Proposal } from '../models/proposal.model';
 import { ProposalService } from '../services/proposal.service';
 
@@ -12,14 +13,26 @@ import { ProposalService } from '../services/proposal.service';
 export class ProposalListComponent implements OnInit, OnDestroy {
   proposals: Proposal[];
   subscription: Subscription;
+  userSub: Subscription;
+  isProfessor = false;
 
   constructor(
     private proposalService: ProposalService,
+    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
+  @HostListener('window:beforeunload') goToPage() {
+    this.router.navigate(['/matchings']);
+  }
+  
   ngOnInit(): void {
+    this.userSub = this.authService.userData.subscribe((userData) => {
+      if (userData) {
+        this.isProfessor = userData.isProfessor;
+      }
+    });
     this.subscription = this.proposalService.proposalsChanged.subscribe(
       (proposals: Proposal[]) => {
         this.proposals = proposals;

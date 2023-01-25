@@ -5,6 +5,7 @@ export class NewUser {
     private username: string,
     private password: string,
     private professor: boolean,
-    private roles: string[]
+    private roles: string[],
+    private description?: string
   ) {}
 }

@@ -1,5 +1,5 @@
 <div class="item">
-  <div class="row">
+  <div *ngIf="isProfessor" class="row">
     <div class="col-sm-1">
       <button type="button" class="btn btn-primary"
         (click)="onEditProposal()">Edit</button>
@@ -8,19 +8,31 @@
       <button type="button" class="btn btn-danger"
         (click)="onDeleteProposal()">Delete</button>
     </div>
+    <hr>
   </div>
-  <hr>
   <div class="row">
-    <div class="col-md-1 prop-id">
+    <div class="col-md-2 prop-id">
       <h2 class="prop-id">#{{ proposal.id }}</h2>
     </div>
-    <div class="col-md-11">
+    <div class="col-md-10">
       <h2>{{ proposal.title }}</h2>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
       <p>{{ proposal.description }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h6>Resources:</h6>
+      <p>{{ proposal.resources }}</p>
+    </div>
+  </div>
+  <div *ngIf="!isProfessor" class="row">
+    <div class="col-sm-4">
+      <button *ngIf="!isAdded" type="button" class="btn btn-info" (click)="onAddToPreferences()">Add to preferences</button>
+      <button *ngIf="isAdded" type="button" class="btn btn-info" (click)="onAddToPreferences()" disabled>Already added</button>
     </div>
   </div>
 </div>

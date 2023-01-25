@@ -21,9 +21,12 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserStartComponent } from './users/user-start/user-start.component';
 import { UsersComponent } from './users/users.component';
+import { ProposalStudentResolverService } from './proposals/resolvers/proposal-student-resolver.service';
+import { PreferenceStartComponent } from './preferences/preference-start/preference-start.component';
+import { PreferenceResolverService } from './preferences/resolvers/preference-resolver.service';
+import { PreferenceDetailComponent } from './preferences/preference-detail/preference-detail.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/matchings', pathMatch: 'full' },
   {
     path: 'matchings',
     component: MatchingsComponent,
@@ -73,9 +76,20 @@ const appRoutes: Routes = [
     ],
   },
   {
-    path: 'preferences',
-    component: PreferencesComponent,
+    path: 'professors/:id/proposals',
+    component: ProposalsComponent,
     canActivate: [AuthGuard, AuthStudentGuard],
+    children: [
+      {
+        path: '',
+        component: ProposalsStartComponent,
+        resolve: [ProposalStudentResolverService],
+      },
+      {
+        path: ':index',
+        component: ProposalDetailComponent,
+      },
+    ],
   },
   {
     path: 'proposals',
@@ -101,6 +115,23 @@ const appRoutes: Routes = [
     ],
   },
   {
+    path: 'preferences',
+    component: PreferencesComponent,
+    canActivate: [AuthGuard, AuthStudentGuard],
+    children: [
+      {
+        path: '',
+        component: PreferenceStartComponent,
+        resolve: [PreferenceResolverService],
+      },
+      {
+        path: ':index',
+        component: PreferenceDetailComponent,
+        resolve: [PreferenceResolverService],
+      },
+    ],
+  },
+  {
     path: 'add-user',
     component: UserEditComponent,
     canActivate: [AuthGuard, AuthAdminGuard],
@@ -109,6 +140,7 @@ const appRoutes: Routes = [
     path: 'auth',
     component: AuthComponent,
   },
+  { path: '', redirectTo: '/matchings', pathMatch: 'full' },
 ];
 
 @NgModule({

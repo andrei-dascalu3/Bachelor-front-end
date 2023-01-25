@@ -1,0 +1,20 @@
+<a [routerLink]="[index]" routerLinkActive="active"
+  class="list-group-item clearfix">
+  <div class="row prop-type" [ngClass]="{
+    'topic': preference.places,
+    'project': !preference.places
+  }">
+    <span>{{ preference.places ? "Topic" : "Project"}}</span>
+  </div>
+  <div class="row">
+    <h4 class="list-group-item-heading">{{ preference.title }}</h4>
+  </div>
+  <div class="row" *ngIf="preference.places">
+    <div class="col-sm-3">
+      <span>Available:</span>
+    </div>
+    <div class="col-sm-3">
+      {{ preference.places }}
+    </div>
+  </div>
+</a>
