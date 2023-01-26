@@ -19,8 +19,12 @@ export class ProposalService {
   private handleError: HandleError;
   private uid: number;
 
-  constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
+  constructor(
+    private http: HttpClient,
+    private httpErrorHandler: HttpErrorHandler
+  ) {
     const userData = JSON.parse(localStorage.getItem('userData'));
+    console.log(userData);
     this.uid = userData ? userData.uid : null;
     this.handleError = httpErrorHandler.createHandleError('ProposalService');
   }

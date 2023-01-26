@@ -32,8 +32,6 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private userService: UserService,
-    private proposalService: ProposalService
   ) {}
 
   login(email: string, password: string) {
@@ -102,8 +100,6 @@ export class AuthService {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
-    this.userService.setUsers([]);
-    this.proposalService.setProposals([]);
     window.location.reload();
   }
 

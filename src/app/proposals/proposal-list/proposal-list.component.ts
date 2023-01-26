@@ -22,10 +22,6 @@ export class ProposalListComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute
   ) {}
-
-  @HostListener('window:beforeunload') goToPage() {
-    this.router.navigate(['/matchings']);
-  }
   
   ngOnInit(): void {
     this.userSub = this.authService.userData.subscribe((userData) => {
