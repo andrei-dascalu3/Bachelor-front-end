@@ -37,5 +37,23 @@
     <div class="col-sm-3">
       <h5>{{ preference.rating }}</h5>
     </div>
+    <div class="col-sm-6">
+      <form #ratingForm="ngForm" (ngSubmit)="onSubmit(ratingForm)">
+        <div class="form-group">
+          <label for="newRating">New rating: </label>
+          <input ngModel type="number" min="1" max="20" digitOnly id="newRating"
+            class="form-control" name="newRating" pattern="\d*" required
+            [value]="preference.rating">
+        </div>
+        <button type="submit" class="btn btn-success"
+          [disabled]="ratingForm.pristine || ratingForm.invalid">Change</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div [hidden]="ratingForm.valid || ratingForm.pristine"
+      class="alert alert-danger">
+      Number must be integer between 1 and 20
+    </div>
   </div>
 </div>

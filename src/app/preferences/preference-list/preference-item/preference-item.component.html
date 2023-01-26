@@ -9,12 +9,12 @@
   <div class="row">
     <h4 class="list-group-item-heading">{{ preference.title }}</h4>
   </div>
-  <div class="row" *ngIf="preference.places">
-    <div class="col-sm-3">
-      <span>Available:</span>
+  <div class="row">
+    <div class="col-sm-auto rating">
+      <span>Rating: {{preference.rating}}</span>
     </div>
-    <div class="col-sm-3">
-      {{ preference.places }}
+    <div *ngIf="preference.places" class="col-sm-auto places">
+      <span>Available: {{ preference.places }}</span>
     </div>
   </div>
 </a>

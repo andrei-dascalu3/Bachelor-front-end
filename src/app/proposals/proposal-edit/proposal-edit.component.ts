@@ -35,19 +35,21 @@ export class ProposalEditComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if (this.isEditMode) {
-      const updatedProposal = new Proposal(
-        form.value.title,
-        form.value.description,
-        form.value.resources
-      );
-      updatedProposal.id = this.proposal.id;
-      updatedProposal.places = this.isTopic ? form.value.places : null;
-      this.proposalService.updateUserProposal(this.index, updatedProposal);
-    } else {
-      this.proposalService.addUserProposal(form.value);
+    if (confirm('Are you sure you want to change the proposal?')) {
+      if (this.isEditMode) {
+        const updatedProposal = new Proposal(
+          form.value.title,
+          form.value.description,
+          form.value.resources
+        );
+        updatedProposal.id = this.proposal.id;
+        updatedProposal.places = this.isTopic ? form.value.places : null;
+        this.proposalService.updateUserProposal(this.index, updatedProposal);
+      } else {
+        this.proposalService.addUserProposal(form.value);
+      }
+      this.onCancel();
     }
-    this.onCancel();
   }
 
   onCancel() {

@@ -65,14 +65,47 @@ export class PreferenceService {
 
   fetchUserPreferences() {
     return this.http
-    .get<Preference[]>(
-      `${this.baseUrl}/${ApiPaths.Users}/${this.uid}/${ApiPaths.Preferences}`
-    )
-    .pipe(
-      catchError(this.handleError('fetchUserPreferences', [])),
-      tap((preferences) => {
-        this.setPreferences(preferences);
-      })
-    );
+      .get<Preference[]>(
+        `${this.baseUrl}/${ApiPaths.Users}/${this.uid}/${ApiPaths.Preferences}`
+      )
+      .pipe(
+        catchError(this.handleError('fetchUserPreferences', [])),
+        tap((preferences) => {
+          this.setPreferences(preferences);
+        })
+      );
+  }
+
+  updateUserPreference(index: number, updatedPreference: Preference) {
+    const propId = updatedPreference.proposalId;
+    return this.http
+      .put<Preference>(
+        `${this.baseUrl}/${ApiPaths.Users}/${this.uid}/${ApiPaths.Preferences}/${propId}/update`,
+        updatedPreference
+      )
+      .pipe(
+        catchError(this.handleError('updateUserPreference', updatedPreference)),
+        tap((updatedPreference) => {
+          this.preferences[index] = updatedPreference;
+          this.preferencesChanged.next(this.preferences.slice());
+        })
+      )
+      .subscribe();
+  }
+
+  deleteUserPreference(index: number) {
+    const propId = this.preferences[index].proposalId;
+    return this.http
+      .delete(
+        `${this.baseUrl}/${ApiPaths.Users}/${this.uid}/${ApiPaths.Preferences}/${propId}/delete`
+      )
+      .pipe(
+        catchError(this.handleError('deleteUserProposal', propId)),
+        tap(() => {
+          this.preferences.splice(index, 1);
+          this.preferencesChanged.next(this.preferences.slice());
+        })
+      )
+      .subscribe();
   }
 }

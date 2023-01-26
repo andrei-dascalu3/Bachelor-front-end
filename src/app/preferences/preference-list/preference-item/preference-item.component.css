@@ -23,3 +23,16 @@ a {
 .project {
   background-color: lightcoral;
 }
+
+.rounded-circle {
+  background-color: red;
+}
+
+.rating {
+  font-weight: bold;
+  color: red;
+}
+
+.places {
+  color: navy;
+}

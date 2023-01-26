@@ -37,7 +37,7 @@ export class ProposalDetailComponent implements OnInit, OnDestroy {
     this.paramsSub = this.route.params.pipe().subscribe((params: Params) => {
       this.index = +params['index'];
       this.proposal = this.proposalService.getProposal(this.index);
-      if (this.isProfessor) {
+      if (!this.isProfessor) {
         this.prefSub = this.prefService
           .studentHasProposal(this.uid, this.proposal.id)
           .subscribe((result) => {
@@ -52,17 +52,23 @@ export class ProposalDetailComponent implements OnInit, OnDestroy {
   }
 
   onDeleteProposal() {
-    this.proposalService.deleteUserProposal(this.index);
-    this.router.navigate(['../'], { relativeTo: this.route });
+    if (confirm('Are you sure you want to delete the proposal?')) {
+      this.proposalService.deleteUserProposal(this.index);
+      this.router.navigate(['../'], { relativeTo: this.route });
+    }
   }
 
   onAddToPreferences() {
-    this.prefService.addUserPreference(this.proposal.id);
-    this.router.navigate(['../'], { relativeTo: this.route });
+    if (confirm('Do you want to add to preferences?')) {
+      this.prefService.addUserPreference(this.proposal.id);
+      this.router.navigate(['../'], { relativeTo: this.route });
+    }
   }
 
   ngOnDestroy(): void {
     this.paramsSub.unsubscribe();
-    this.prefSub.unsubscribe();
+    if (this.prefSub) {
+      this.prefSub.unsubscribe();
+    }
   }
 }
