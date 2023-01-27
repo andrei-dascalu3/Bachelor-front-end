@@ -15,6 +15,7 @@ export class ProposalListComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   userSub: Subscription;
   isProfessor = false;
+  isAssigning = false;
 
   constructor(
     private proposalService: ProposalService,
@@ -24,6 +25,9 @@ export class ProposalListComponent implements OnInit, OnDestroy {
   ) {}
   
   ngOnInit(): void {
+    if(this.router.url.endsWith('assign')) {
+      this.isAssigning = true;
+    }
     this.userSub = this.authService.userData.subscribe((userData) => {
       if (userData) {
         this.isProfessor = userData.isProfessor;

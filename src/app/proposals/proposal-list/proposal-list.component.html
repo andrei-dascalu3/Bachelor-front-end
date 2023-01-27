@@ -1,4 +1,4 @@
-<div *ngIf="isProfessor" class="row">
+<div *ngIf="isProfessor && !isAssigning" class="row">
   <div class="col-xs-12">
     <button class="btn btn-success" (click)="onNewProposal()">New
       Proposal</button>
@@ -7,8 +7,11 @@
 <hr>
 <div class="row">
   <div class="col-xs-12">
+    <h3>{{ isProfessor ? "My proposals" : "Available proposals" }}</h3>
+    <hr>
     <app-proposal-item *ngFor="let proposalEl of proposals; let i = index"
       [proposal]="proposalEl" [index]="i"></app-proposal-item>
-    <h1 class="no-prop" *ngIf="!proposals || proposals.length === 0">No proposals.</h1>
+    <h1 class="no-prop" *ngIf="!proposals || proposals.length === 0">No
+      proposals.</h1>
   </div>
 </div>

@@ -1,0 +1,28 @@
+<div class="item" [ngClass]="status">
+  <div class="row">
+    <div class="col-sm-2">
+      <button *ngIf="isProfessor" type="button" class="btn btn-danger"
+        (click)="onDeleteAccord()">Delete</button>
+      <button *ngIf="!isProfessor && !accord.accepted" type="button"
+        class="btn btn-success" (click)="onChangeStatus()"
+        [disabled]="status === 'unacceptable'">Accept</button>
+      <button *ngIf="!isProfessor && accord.accepted" type="button"
+        class="btn btn-danger" (click)="onChangeStatus()">Unaccept</button>
+    </div>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <h4 *ngIf="!isProfessor">Professor: {{ accord.profUsername }}</h4>
+      <h4 *ngIf="isProfessor">Student: {{ accord.studUsername }}</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 prop-id">
+      <h2 class="prop-id">#{{ accord.propId }}</h2>
+    </div>
+    <div class="col-md-10">
+      <h2>{{ accord.propTitle }}</h2>
+    </div>
+  </div>
+</div>

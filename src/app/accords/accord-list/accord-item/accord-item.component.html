@@ -1,0 +1,16 @@
+<a [routerLink]="[index]" routerLinkActive="active"
+  class="list-group-item clearfix" [ngClass]="{
+    'accepted': accord.accepted,
+    'not-accepted': !accord.accepted
+  }">
+  <div class="row">
+    <h4 class="list-group-item-heading">#{{ accord.propId}} {{ accord.propTitle
+      }}</h4>
+  </div>
+  <div class="row">
+    <span>Prof. ID: {{ accord.profId }}</span>
+  </div>
+  <div class="row">
+    <span>Stud. ID: {{ accord.studId }}</span>
+  </div>
+</a>

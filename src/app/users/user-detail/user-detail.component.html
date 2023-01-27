@@ -16,8 +16,12 @@
     </p>
     <button *ngIf="!isProfessor" type="button" class="btn btn-info"
       routerLink="proposals" routerLinkActive>View proposals</button>
-    <button *ngIf="isProfessor" type="button"
-      class="btn btn-success">Request accord</button>
+    <button *ngIf="isProfessor" type="button" class="btn btn-success"
+      routerLink="assign" routerLinkActive
+      [disabled]="hasAccordAccepted">Propose assignment</button>
+    <div [hidden]="!hasAccordAccepted" class="alert alert-danger">
+      Student is already in an accord
+    </div>
   </div>
   <div class="card-footer text-muted text-center">
     {{ user.username }}

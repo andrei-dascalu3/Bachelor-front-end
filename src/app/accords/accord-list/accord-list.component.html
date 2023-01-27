@@ -1,0 +1,7 @@
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-accord-item *ngFor="let accordEl of accords; let i = index" [accord]="accordEl" [index]="i"></app-accord-item>
+    <h1 class="no-accord" *ngIf="!accords || accords.length === 0">No accords.</h1>
+  </div>
+</div>

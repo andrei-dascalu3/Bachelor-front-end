@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiPaths, environment } from 'src/environments/environment';
 import {
@@ -24,7 +24,6 @@ export class ProposalService {
     private httpErrorHandler: HttpErrorHandler
   ) {
     const userData = JSON.parse(localStorage.getItem('userData'));
-    console.log(userData);
     this.uid = userData ? userData.uid : null;
     this.handleError = httpErrorHandler.createHandleError('ProposalService');
   }
@@ -67,12 +66,31 @@ export class ProposalService {
   }
 
   fetchUserProposalsForStudent(profId: number) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('available', true);
     return this.http
       .get<Proposal[]>(
-        `${this.baseUrl}/${ApiPaths.Users}/${profId}/${ApiPaths.Proposals}`
+        `${this.baseUrl}/${ApiPaths.Users}/${profId}/${ApiPaths.Proposals}`,
+        { params: queryParams }
       )
       .pipe(
         catchError(this.handleError('fetchUserProposals', [])),
+        tap((proposals) => {
+          this.setProposals(proposals);
+        })
+      );
+  }
+
+  fetchAssignableUserProposals() {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('available', true);
+    return this.http
+      .get<Proposal[]>(
+        `${this.baseUrl}/${ApiPaths.Users}/${this.uid}/${ApiPaths.Proposals}`,
+        { params: queryParams }
+      )
+      .pipe(
+        catchError(this.handleError('fetchAvailableUserProposals', [])),
         tap((proposals) => {
           this.setProposals(proposals);
         })

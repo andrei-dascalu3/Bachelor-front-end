@@ -1,18 +1,22 @@
 <div class="item">
   <div *ngIf="isProfessor" class="row">
-    <div class="col-sm-1">
+    <div *ngIf="!isAssigning" class="col-sm-1">
       <button type="button" class="btn btn-primary"
         (click)="onEditProposal()">Edit</button>
     </div>
-    <div class="col-sm-1">
+    <div *ngIf="!isAssigning" class="col-sm-1">
       <button type="button" class="btn btn-danger"
         (click)="onDeleteProposal()">Delete</button>
+    </div>
+    <div *ngIf="isAssigning" class="col-sm-1">
+      <button type="button" class="btn btn-success"
+        (click)="onAssignProposal()">Assign</button>
     </div>
     <hr>
   </div>
   <div class="row">
     <div class="col-md-2 prop-id">
-      <h2 class="prop-id">#{{ proposal.id }}</h2>
+      <h2 class="prop-id">#{{ proposal.id}}</h2>
     </div>
     <div class="col-md-10">
       <h2>{{ proposal.title }}</h2>

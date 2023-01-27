@@ -17,6 +17,8 @@ export enum ApiPaths {
   Proposals = 'proposals',
   Preference = 'preference',
   Preferences = 'preferences',
+  Accord = 'accord',
+  Accords = 'accords',
   AddRole = 'role/addToUser',
   Login = 'login'
 }

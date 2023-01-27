@@ -34,6 +34,11 @@ import { PreferenceListComponent } from './preferences/preference-list/preferenc
 import { PreferenceItemComponent } from './preferences/preference-list/preference-item/preference-item.component';
 import { PreferenceDetailComponent } from './preferences/preference-detail/preference-detail.component';
 import { PreferenceStartComponent } from './preferences/preference-start/preference-start.component';
+import { AccordsComponent } from './accords/accords.component';
+import { AccordListComponent } from './accords/accord-list/accord-list.component';
+import { AccordItemComponent } from './accords/accord-list/accord-item/accord-item.component';
+import { AccordStartComponent } from './accords/accord-start/accord-start.component';
+import { AccordDetailComponent } from './accords/accord-detail/accord-detail.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +69,11 @@ import { PreferenceStartComponent } from './preferences/preference-start/prefere
     PreferenceItemComponent,
     PreferenceDetailComponent,
     PreferenceStartComponent,
+    AccordsComponent,
+    AccordListComponent,
+    AccordItemComponent,
+    AccordStartComponent,
+    AccordDetailComponent,
   ],
   imports: [
     BrowserModule,

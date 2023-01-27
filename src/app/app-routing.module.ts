@@ -25,6 +25,12 @@ import { ProposalStudentResolverService } from './proposals/resolvers/proposal-s
 import { PreferenceStartComponent } from './preferences/preference-start/preference-start.component';
 import { PreferenceResolverService } from './preferences/resolvers/preference-resolver.service';
 import { PreferenceDetailComponent } from './preferences/preference-detail/preference-detail.component';
+import { ProposalAssignResolverService } from './proposals/resolvers/proposal-assign-resolver.service';
+import { AccordsComponent } from './accords/accords.component';
+import { AccordStartComponent } from './accords/accord-start/accord-start.component';
+import { AccordProfessorResolverService } from './accords/resolvers/accord-professor-resolver.service';
+import { AccordDetailComponent } from './accords/accord-detail/accord-detail.component';
+import { AccordStudentResolverService } from './accords/resolvers/accord-student-resolver.service';
 
 const appRoutes: Routes = [
   {
@@ -55,6 +61,22 @@ const appRoutes: Routes = [
         path: ':id',
         component: UserDetailComponent,
         resolve: [StudentsResolverService],
+      },
+    ],
+  },
+  {
+    path: 'students/:id/assign',
+    component: ProposalsComponent,
+    canActivate: [AuthGuard, AuthProfessorGuard],
+    children: [
+      {
+        path: '',
+        component: ProposalsStartComponent,
+        resolve: [ProposalAssignResolverService],
+      },
+      {
+        path: ':index',
+        component: ProposalDetailComponent,
       },
     ],
   },
@@ -112,6 +134,40 @@ const appRoutes: Routes = [
         component: ProposalEditComponent,
         resolve: [ProposalResolverService],
       },
+    ],
+  },
+  {
+    path: 'professor/accords',
+    component: AccordsComponent,
+    canActivate: [AuthGuard, AuthProfessorGuard],
+    children: [
+      {
+        path: '',
+        component: AccordStartComponent,
+        resolve: [AccordProfessorResolverService],
+      },
+      {
+        path: ':index',
+        component: AccordDetailComponent,
+        resolve: [AccordProfessorResolverService]
+      }
+    ],
+  },
+  {
+    path: 'student/accords',
+    component: AccordsComponent,
+    canActivate: [AuthGuard, AuthStudentGuard],
+    children: [
+      {
+        path: '',
+        component: AccordStartComponent,
+        resolve: [AccordStudentResolverService],
+      },
+      {
+        path: ':index',
+        component: AccordDetailComponent,
+        resolve: [AccordStudentResolverService]
+      }
     ],
   },
   {
