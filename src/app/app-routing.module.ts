@@ -31,6 +31,7 @@ import { AccordStartComponent } from './accords/accord-start/accord-start.compon
 import { AccordProfessorResolverService } from './accords/resolvers/accord-professor-resolver.service';
 import { AccordDetailComponent } from './accords/accord-detail/accord-detail.component';
 import { AccordStudentResolverService } from './accords/resolvers/accord-student-resolver.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -13,12 +14,16 @@ import { UserService } from '../services/user.service';
 export class UserListComponent implements OnInit {
   users: User[];
   subscription: Subscription;
+  searchForm;
 
   constructor(
     private userService: UserService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private formBuilder: FormBuilder
+  ) {
+    this.searchForm = this.formBuilder.group({
+      search: ''
+    })
+  }
 
   ngOnInit(): void {
     this.subscription = this.userService.usersChanged.subscribe(

@@ -4,7 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { UsersComponent } from './users/users.component';
 import { UserListComponent } from './users/user-list/user-list.component';
@@ -39,6 +39,7 @@ import { AccordListComponent } from './accords/accord-list/accord-list.component
 import { AccordItemComponent } from './accords/accord-list/accord-item/accord-item.component';
 import { AccordStartComponent } from './accords/accord-start/accord-start.component';
 import { AccordDetailComponent } from './accords/accord-detail/accord-detail.component';
+import { SearchUserFilterPipe } from './users/pipes/search-user-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -74,9 +75,11 @@ import { AccordDetailComponent } from './accords/accord-detail/accord-detail.com
     AccordItemComponent,
     AccordStartComponent,
     AccordDetailComponent,
+    SearchUserFilterPipe,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
