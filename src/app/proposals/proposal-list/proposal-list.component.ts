@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -16,16 +17,22 @@ export class ProposalListComponent implements OnInit, OnDestroy {
   userSub: Subscription;
   isProfessor = false;
   isAssigning = false;
+  searchForm;
 
   constructor(
     private proposalService: ProposalService,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
-  
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
+    this.searchForm = this.formBuilder.group({
+      search: '',
+    });
+  }
+
   ngOnInit(): void {
-    if(this.router.url.endsWith('assign')) {
+    if (this.router.url.endsWith('assign')) {
       this.isAssigning = true;
     }
     this.userSub = this.authService.userData.subscribe((userData) => {

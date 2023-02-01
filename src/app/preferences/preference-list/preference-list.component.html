@@ -1,8 +1,13 @@
+<div>
+  <form [formGroup]="searchForm">
+    <input formControlName="search" placeholder="Search" />
+  </form>
+</div>
 <hr>
 <div class="row">
   <div class="col-xs-12">
-    <app-preference-item *ngFor="let preferenceEl of preferences; let i = index"
-      [preference]="preferenceEl" [index]="i"></app-preference-item>
+    <app-preference-item *ngFor="let item of preferences | searchPreferenceFilter: searchForm.value.search; let i = index"
+      [preference]="item.value" [index]="item.index"></app-preference-item>
     <h1 class="no-prop" *ngIf="!preferences || preferences.length === 0">No preferences.</h1>
   </div>
 </div>

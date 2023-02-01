@@ -40,6 +40,9 @@ import { AccordItemComponent } from './accords/accord-list/accord-item/accord-it
 import { AccordStartComponent } from './accords/accord-start/accord-start.component';
 import { AccordDetailComponent } from './accords/accord-detail/accord-detail.component';
 import { SearchUserFilterPipe } from './users/pipes/search-user-filter.pipe';
+import { SearchProposalFilterPipe } from './proposals/pipes/search-proposal-filter.pipe';
+import { SearchPreferenceFilterPipe } from './preferences/pipes/search-preference-filter.pipe';
+import { SearchAccordFilterPipe } from './accords/pipes/search-accord-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,9 @@ import { SearchUserFilterPipe } from './users/pipes/search-user-filter.pipe';
     AccordStartComponent,
     AccordDetailComponent,
     SearchUserFilterPipe,
+    SearchProposalFilterPipe,
+    SearchPreferenceFilterPipe,
+    SearchAccordFilterPipe,
   ],
   imports: [
     BrowserModule,
