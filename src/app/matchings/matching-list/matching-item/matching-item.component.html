@@ -1,1 +1,12 @@
-<p>matching-item works!</p>
+<a [routerLink]="[index]" routerLinkActive="active"
+  class="list-group-item clearfix">
+  <div class="row">
+    <h4>Stud. ID: {{ matching.studentId }}</h4>
+  </div>
+  <div class="row">
+    <h4>Prop. ID: {{ matching.proposalId }}</h4>
+  </div>
+  <div class="row">
+    <h4>Cost: {{ matching.cost }}</h4>
+  </div>
+</a>

@@ -43,6 +43,7 @@ import { SearchUserFilterPipe } from './users/pipes/search-user-filter.pipe';
 import { SearchProposalFilterPipe } from './proposals/pipes/search-proposal-filter.pipe';
 import { SearchPreferenceFilterPipe } from './preferences/pipes/search-preference-filter.pipe';
 import { SearchAccordFilterPipe } from './accords/pipes/search-accord-filter.pipe';
+import { SearchMatchingFilterPipe } from './matchings/pipes/search-matching-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { SearchAccordFilterPipe } from './accords/pipes/search-accord-filter.pip
     SearchProposalFilterPipe,
     SearchPreferenceFilterPipe,
     SearchAccordFilterPipe,
+    SearchMatchingFilterPipe,
   ],
   imports: [
     BrowserModule,

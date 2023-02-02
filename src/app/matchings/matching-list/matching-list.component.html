@@ -1,1 +1,13 @@
-<p>matching-list works!</p>
+<div>
+  <form [formGroup]="searchForm">
+    <input formControlName="search" placeholder="Search" />
+  </form>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-matching-item *ngFor="let item of matchings | searchMatchingFilter: searchForm.value.search; let i = index"
+      [matching]="item.value" [index]="item.index"></app-matching-item>
+    <h1 class="no-matchings" *ngIf="!matchings || matchings.length === 0">No matchings.</h1>
+  </div>
+</div>

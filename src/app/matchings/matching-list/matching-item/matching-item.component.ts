@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Matching } from '../../models/matching.model';
 
 @Component({
   selector: 'app-matching-item',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./matching-item.component.css']
 })
 export class MatchingItemComponent implements OnInit {
+  @Input() matching: Matching;
+  @Input() index: number;
 
   constructor() { }
 

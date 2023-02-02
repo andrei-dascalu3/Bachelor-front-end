@@ -1,0 +1,9 @@
+.item {
+  border: solid black 2px;
+  border-radius: 10px;
+  padding: 5%;
+}
+
+.card {
+  top: 10vh;
+}

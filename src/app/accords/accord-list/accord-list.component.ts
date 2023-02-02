@@ -26,7 +26,7 @@ export class AccordListComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.accordService.accordsChanged.subscribe(
       (accords: Accord[]) => {
-        this.accords = this.accords;
+        this.accords = accords;
       }
     );
     this.accords = this.accordService.getAccords();
