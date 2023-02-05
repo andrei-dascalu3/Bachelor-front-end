@@ -20,8 +20,10 @@ export class SearchMatchingFilterPipe implements PipeTransform {
 
   private condition(value: Matching, search: string): boolean {
     return (
-      value.studentId.toString().includes(search) ||
-      value.proposalId.toString().includes(search)
+      value.student.firstName.toString().includes(search) ||
+      value.student.lastName.toString().includes(search) ||
+      value.student.username.toString().includes(search) ||
+      value.proposal.title.toString().includes(search)
     );
   }
 

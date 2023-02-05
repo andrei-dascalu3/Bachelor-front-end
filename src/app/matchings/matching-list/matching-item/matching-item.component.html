@@ -1,12 +1,33 @@
 <a [routerLink]="[index]" routerLinkActive="active"
   class="list-group-item clearfix">
   <div class="row">
-    <h4>Stud. ID: {{ matching.studentId }}</h4>
+    <div class="col-auto">
+      <strong>Student: </strong>
+    </div>
+    <div class="col-auto">
+      <span>{{ matching.student.username }}</span>
+    </div>
   </div>
   <div class="row">
-    <h4>Prop. ID: {{ matching.proposalId }}</h4>
+    <div class="col-auto">
+      <strong>Professor: </strong>
+    </div>
+    <div class="col-auto">
+      <span>{{ matching.proposal.authorUsername }}</span>
+    </div>
   </div>
   <div class="row">
-    <h4>Cost: {{ matching.cost }}</h4>
+    <div class="col-auto">
+      <strong>Proposal: </strong>
+    </div>
+    <div class="col-auto">
+      <span>{{ matching.proposal.title }}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-auto">
+      <strong *ngIf="matching.cost == 0">In accord</strong>
+      <strong *ngIf="matching.cost != 0">Cost: {{ matching.cost }}</strong>
+    </div>
   </div>
 </a>

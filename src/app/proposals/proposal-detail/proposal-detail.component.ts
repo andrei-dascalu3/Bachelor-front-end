@@ -42,6 +42,10 @@ export class ProposalDetailComponent implements OnInit, OnDestroy {
     this.paramsSub = this.route.params.pipe().subscribe((params: Params) => {
       this.index = +params['index'];
       this.proposal = this.proposalService.getProposal(this.index);
+      if (this.proposal == null) {
+        this.router.navigate(['../'], { relativeTo: this.route });
+        return;
+      }
       if (!this.isProfessor) {
         this.prefSub = this.prefService
           .studentHasProposal(this.uid, this.proposal.id)

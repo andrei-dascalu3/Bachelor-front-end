@@ -27,6 +27,9 @@ export class MatchingDetailComponent implements OnInit, OnDestroy {
     this.subscription = this.route.params.subscribe((params: Params) => {
       this.index = +params['index'];
       this.matching = this.matchingService.getMatching(this.index);
+      if (this.matching == null) {
+        this.router.navigate(['matchings']);
+      }
     });
   }
 

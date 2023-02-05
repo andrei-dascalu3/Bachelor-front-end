@@ -1,7 +1,10 @@
+import { MatchedProposal } from "./matched-proposal.model";
+import { MatchedStudent } from "./matched-student.model";
+
 export class Matching {
   constructor(
-    public studentId: number,
-    public proposalId: number,
+    public student: MatchedStudent,
+    public proposal: MatchedProposal,
     public cost: number
   ) {}
 }

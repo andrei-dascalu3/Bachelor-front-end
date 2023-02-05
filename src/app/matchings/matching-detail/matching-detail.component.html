@@ -1,11 +1,66 @@
 <div class="item card card-cascade sticky-top">
-  <div class="row">
-    <h3>Student ID: {{ matching.studentId }}</h3>
+  <div class="view view-cascade overlay" [align]="'center'">
+    <img class="card-img-top" src="../../../assets/img/user-logo.png"
+      alt="Card image cap" style="max-width: 20vw;">
+    <a>
+      <div class="mask rgba-white-slight"></div>
+    </a>
   </div>
-  <div class="row">
-    <h3>Proposal ID: {{ matching.proposalId }}</h3>
+  <div class="card-body card-body-cascade text-center">
+    <h4 class="user-index">#{{ matching.student.id }}</h4>
+    <h4 class="card-title">
+      <strong>{{ matching.student.firstName }} {{ matching.student.lastName
+        }}</strong>
+    </h4>
+    <details>
+      <summary class="card-subttitle">
+        <strong>Proposal</strong>
+      </summary>
+      <div>
+        <div class="row">
+          <div class="col-auto">
+            <strong>
+              Professor:
+            </strong>
+          </div>
+          <div class="col-auto">
+            {{ matching.proposal.authorUsername }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-auto">
+            <strong>
+              Title:
+            </strong>
+          </div>
+          <div class="col-auto">
+            {{ matching.proposal.title }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-auto">
+            <strong>
+              Description:
+            </strong>
+          </div>
+          <div class="col-auto">
+            {{ matching.proposal.description }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-auto">
+            <strong>
+              Resources:
+            </strong>
+          </div>
+          <div class="col-auto">
+            {{ matching.proposal.resources }}
+          </div>
+        </div>
+      </div>
+    </details>
   </div>
-  <div class="row">
-    <h3>Cost: {{ matching.cost }}</h3>
+  <div class="card-footer text-muted text-center">
+    {{ matching.student.username }}
   </div>
 </div>
