@@ -19,7 +19,6 @@ import { MatchingListComponent } from './matchings/matching-list/matching-list.c
 import { MatchingItemComponent } from './matchings/matching-list/matching-item/matching-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { UserListAltComponent } from './users/user-list-alt/user-list-alt.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { AuthComponent } from './auth/auth.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
@@ -44,6 +43,7 @@ import { SearchProposalFilterPipe } from './proposals/pipes/search-proposal-filt
 import { SearchPreferenceFilterPipe } from './preferences/pipes/search-preference-filter.pipe';
 import { SearchAccordFilterPipe } from './accords/pipes/search-accord-filter.pipe';
 import { SearchMatchingFilterPipe } from './matchings/pipes/search-matching-filter.pipe';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,6 @@ import { SearchMatchingFilterPipe } from './matchings/pipes/search-matching-filt
     LoadingSpinnerComponent,
     MatchingListComponent,
     MatchingItemComponent,
-    UserListAltComponent,
     PreferencesComponent,
     AuthComponent,
     UserEditComponent,
@@ -84,6 +83,7 @@ import { SearchMatchingFilterPipe } from './matchings/pipes/search-matching-filt
     SearchPreferenceFilterPipe,
     SearchAccordFilterPipe,
     SearchMatchingFilterPipe,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

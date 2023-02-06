@@ -1,3 +1,14 @@
 .no-matchings {
   color: rgba(0, 0, 0, 0.7);
 }
+
+.search {
+  position: sticky;
+  top: 10vh;
+  background: inherit;
+  z-index: 10;
+}
+
+.list {
+  z-index: 5;
+}

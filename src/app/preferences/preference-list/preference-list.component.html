@@ -1,10 +1,10 @@
-<div>
+<div class="search">
   <form [formGroup]="searchForm">
     <input formControlName="search" placeholder="Search" />
   </form>
+  <hr>
 </div>
-<hr>
-<div class="row">
+<div class="row list">
   <div class="col-xs-12">
     <app-preference-item *ngFor="let item of preferences | searchPreferenceFilter: searchForm.value.search; let i = index"
       [preference]="item.value" [index]="item.index"></app-preference-item>

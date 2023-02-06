@@ -1,0 +1,72 @@
+<h2>Profile</h2>
+<details open>
+  <summary class="lead">
+    Image
+  </summary>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-3">
+      <img class="card-img-top" src="../../../assets/img/user-logo.png"
+      alt="Card image cap" style="max-width: 20vw;">
+      <form #imageForm="ngForm" (ngSubmit)="onImageSubmit(imageForm)">
+        <div class="form-group">
+          <input type="file" (change)="onImageUpload($event)" id="image"
+            name="image" class="form-control" accept="image/jpeg">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Update image</button>
+        </div>
+      </form>
+    </div>
+    <hr>
+  </div>
+</details>
+<details>
+  <summary class="lead">
+    Description
+  </summary>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-3">
+      <form #descriptionForm="ngForm"
+        (ngSubmit)="onDescriptionSubmit(descriptionForm)">
+        <div class="form-group">
+          <textarea type="text" id="description" name="description"
+            class="form-control" rows="6" [(ngModel)]="description"
+            required></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Update description</button>
+        </div>
+      </form>
+    </div>
+    <hr>
+  </div>
+</details>
+<details>
+  <summary class="lead">
+    Password
+  </summary>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-3">
+      <form #passwordForm="ngForm" (ngSubmit)="onPasswordSubmit(passwordForm)">
+        <div class="form-group">
+          <label>Old Password</label>
+          <input type="password" class="form-control" id="oldPassword"
+            name="oldPassword" />
+        </div>
+        <div class="form-group">
+          <label>New Password</label>
+          <input type="password" class="form-control" id="newPassword"
+            name="newPassword" />
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword"
+            name="confirmPassword" />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Change Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</details>

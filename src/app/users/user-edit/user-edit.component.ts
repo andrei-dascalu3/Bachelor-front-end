@@ -37,18 +37,14 @@ export class UserEditComponent implements OnInit {
       []
     );
     const username = form.value.email;
-    console.log(newUser);
     this.isLoading = true;
     this.dataStorageService.addNewUser(newUser).subscribe((resData) => {
       this.isLoading = false;
-      console.log(resData);
       this.dataStorageService
         .addRoleToUser(username, 'ROLE_USER')
         .subscribe((resData) => {
-          console.log(resData);
           this.isLoading = false;
         }, errorMessage => {
-          console.log(errorMessage);
           this.error = errorMessage;
           this.isLoading = false;
         });
@@ -56,16 +52,13 @@ export class UserEditComponent implements OnInit {
         this.dataStorageService
           .addRoleToUser(username, 'ROLE_ADMIN')
           .subscribe((resData) => {
-            console.log(resData);
             this.isLoading = false;
           }, errorMessage => {
-            console.log(errorMessage);
             this.error = errorMessage;
             this.isLoading = false;
           });
       }
     }, errorMessage => {
-      console.log(errorMessage);
       this.error = errorMessage;
       this.isLoading = false;
     });
@@ -73,9 +66,7 @@ export class UserEditComponent implements OnInit {
   }
 
   private errorHandler(errorMessage: string) {
-    console.log('AICI');
     this.isLoading = false;
-    console.log(errorMessage);
     this.error = errorMessage;
   }
 }

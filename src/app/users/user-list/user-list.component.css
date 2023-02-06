@@ -1,0 +1,10 @@
+.search {
+  position: sticky;
+  top: 10vh;
+  background: inherit;
+  z-index: 10;
+}
+
+.list {
+  z-index: 5;
+}

@@ -32,6 +32,7 @@ import { AccordProfessorResolverService } from './accords/resolvers/accord-profe
 import { AccordDetailComponent } from './accords/accord-detail/accord-detail.component';
 import { AccordStudentResolverService } from './accords/resolvers/accord-student-resolver.service';
 import { MatchingResolverService } from './matchings/resolvers/matching-resolver.service';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
   {
@@ -197,6 +198,10 @@ const appRoutes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   },
   { path: '', redirectTo: '/matchings', pathMatch: 'full' },
 ];

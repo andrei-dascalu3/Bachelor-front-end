@@ -68,9 +68,8 @@
         <ul class="dropdown-menu dropdown-menu-end"
           aria-labelledby="navbarDropdown">
           <div *ngIf="isAuthenticated">
-            <li><a class="dropdown-item">Preferences</a></li>
-            <li><a class="dropdown-item">My profile</a></li>
-            <li><a class="dropdown-item">Setings</a></li>
+            <li><a class="dropdown-item" routerLink="/profile"
+              routerLinkActive="active">My profile</a></li>
           </div>
           <li>
             <hr class="dropdown-divider">
