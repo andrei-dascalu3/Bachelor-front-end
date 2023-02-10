@@ -7,8 +7,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, BehaviorSubject, tap, throwError } from 'rxjs';
 import { ApiPaths, environment } from 'src/environments/environment';
-import { ProposalService } from '../proposals/services/proposal.service';
-import { UserService } from '../users/services/user.service';
 import { UserData } from './userData.model';
 
 export interface AuthResponseData {
