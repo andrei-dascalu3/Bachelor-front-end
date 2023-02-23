@@ -20,7 +20,8 @@ export enum ApiPaths {
   Accord = 'accord',
   Accords = 'accords',
   AddRole = 'role/addToUser',
-  Login = 'login'
+  Login = 'login',
+  Description = 'description'
 }
 
 /*

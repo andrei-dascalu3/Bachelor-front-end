@@ -8,3 +8,7 @@
 .prop-id {
   color: rgba(0, 0, 0, 0.700);
 }
+
+.description, .resources {
+  white-space: pre-wrap;
+}

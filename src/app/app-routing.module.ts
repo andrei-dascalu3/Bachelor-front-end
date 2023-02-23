@@ -42,7 +42,7 @@ const appRoutes: Routes = [
       {
         path: '',
         component: MatchingStartComponent,
-        resolve: [MatchingResolverService]
+        resolve: [MatchingResolverService],
       },
       {
         path: ':index',
@@ -152,8 +152,8 @@ const appRoutes: Routes = [
       {
         path: ':index',
         component: AccordDetailComponent,
-        resolve: [AccordProfessorResolverService]
-      }
+        resolve: [AccordProfessorResolverService],
+      },
     ],
   },
   {
@@ -169,8 +169,8 @@ const appRoutes: Routes = [
       {
         path: ':index',
         component: AccordDetailComponent,
-        resolve: [AccordStudentResolverService]
-      }
+        resolve: [AccordStudentResolverService],
+      },
     ],
   },
   {
@@ -201,7 +201,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
   },
   { path: '', redirectTo: '/matchings', pathMatch: 'full' },
 ];

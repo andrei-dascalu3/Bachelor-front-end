@@ -11,7 +11,7 @@
     <h4 class="card-title">
       <strong>{{ user.firstName }} {{ user.lastName }}</strong>
     </h4>
-    <p class="card-text">
+    <p class="card-text description">
       {{user.description ? user.description : "No description."}}
     </p>
     <button *ngIf="!isProfessor" type="button" class="btn btn-info"

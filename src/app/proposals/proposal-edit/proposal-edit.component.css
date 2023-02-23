@@ -10,3 +10,7 @@ input.ng-dirty.ng-invalid {
 .sticky-top {
   top: 10vh;
 }
+
+textarea {
+  white-space: pre-wrap;
+}
