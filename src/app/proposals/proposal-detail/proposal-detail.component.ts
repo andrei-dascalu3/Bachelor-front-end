@@ -1,5 +1,10 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  Params,
+  Router,
+} from '@angular/router';
 import { map, Subscription } from 'rxjs';
 import { AccordService } from 'src/app/accords/services/accord.service';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -18,6 +23,7 @@ export class ProposalDetailComponent implements OnInit, OnDestroy {
   index: number;
   paramsSub: Subscription;
   prefSub: Subscription;
+  paramsSubAssigned: Subscription;
   isProfessor = false;
   uid: number;
   isAdded = false;
@@ -76,10 +82,12 @@ export class ProposalDetailComponent implements OnInit, OnDestroy {
 
   onAssignProposal() {
     if (confirm('Do you want to assign proposal to student?')) {
-      const index = +this.route.snapshot.paramMap.get('id');
-      const student = this.userService.getUser(index);
-      this.accordService.addAccord(student.id, this.proposal.id);
-      this.router.navigate(['students']);
+      this.paramsSubAssigned = this.route.parent.paramMap.subscribe((paramMap) => {  
+        const index = +paramMap.get('id');
+        const student = this.userService.getUser(index);
+        this.accordService.addAccord(student.id, this.proposal.id);
+        this.router.navigate(['students']);
+      });
     }
   }
 
@@ -87,6 +95,9 @@ export class ProposalDetailComponent implements OnInit, OnDestroy {
     this.paramsSub.unsubscribe();
     if (this.prefSub) {
       this.prefSub.unsubscribe();
+    }
+    if(this.paramsSubAssigned){
+      this.paramsSubAssigned.unsubscribe();
     }
   }
 }

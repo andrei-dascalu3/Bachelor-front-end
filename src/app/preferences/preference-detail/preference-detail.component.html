@@ -41,7 +41,7 @@
       <form #ratingForm="ngForm" (ngSubmit)="onSubmit(ratingForm)">
         <div class="form-group">
           <label for="newRating">New rating: </label>
-          <input ngModel type="number" min="1" max="20" digitOnly id="newRating"
+          <input ngModel type="number" min="1" max="100" digitOnly id="newRating"
             class="form-control" name="newRating" pattern="\d*" required
             [value]="preference.rating">
         </div>

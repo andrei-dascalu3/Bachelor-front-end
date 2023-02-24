@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataStorageService } from 'src/app/shared/services/data-storage.service';
 import { NewUser } from 'src/app/users/models/newUser.model';
 
@@ -15,7 +16,7 @@ export class UserEditComponent implements OnInit {
   isLoading = false;
   error: string = '';
 
-  constructor(private dataStorageService: DataStorageService) {}
+  constructor(private dataStorageService: DataStorageService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -58,6 +59,7 @@ export class UserEditComponent implements OnInit {
             this.isLoading = false;
           });
       }
+      this.router.navigate(["/profile"]);
     }, errorMessage => {
       this.error = errorMessage;
       this.isLoading = false;

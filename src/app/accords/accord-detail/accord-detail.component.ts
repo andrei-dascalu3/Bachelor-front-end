@@ -51,7 +51,7 @@ export class AccordDetailComponent implements OnInit, OnDestroy {
     }
     if (confirm(message)) {
       const updatedAccord = JSON.parse(JSON.stringify(this.accord));
-      updatedAccord.accept = !updatedAccord.accept;
+      updatedAccord.accepted = !updatedAccord.accepted;
       this.accordService.updateAccord(this.index, updatedAccord);
       this.router.navigate(['../'], { relativeTo: this.route });
     }
@@ -59,7 +59,8 @@ export class AccordDetailComponent implements OnInit, OnDestroy {
 
   onDeleteAccord() {
     if (confirm('Are you sure you want to delete the accord?')) {
-      this.accord
+      this.accordService.deleteAccord(this.index);
+      this.router.navigate(['../'], { relativeTo: this.route });
     }
   }
 
